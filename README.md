@@ -32,6 +32,14 @@ project).
     of the same, for easy reading and diffing.
 - `JASA_HR_VILAGE.zip` — the original Overleaf project export, kept as a
   provenance snapshot of the manuscript as submitted (before revision).
+- `response/response_to_comments.tex` — the point-by-point "response to
+  comments" document required for resubmission. Quotes every Editor
+  action item (E1–E14, including the third-party-data Q1–Q3 sub-points),
+  every Reviewer 1 major comment (R1-1–R1-8), and every Reviewer 2 major
+  and minor comment (R2-1–R2-6, R2-m1–R2-m11), each followed by a blank
+  `Response:` block to fill in. General Comments (no response required
+  per the editor) are listed separately as a checklist. Compiles cleanly
+  with `pdflatex` (verified, 18 pages).
 
 ## Required revision
 
@@ -39,6 +47,6 @@ The editor requires reframing the paper as a **Data Descriptor**: no
 results, analyses, or general conclusions outside the Background and
 Summary, Methods, Data Records, and Technical Validation sections. See
 `reviews/editor_and_reviewer_comments.md` for the full list of editor
-action items and Reviewer 1 / Reviewer 2 comments, each of which needs a
-response in the eventual "response to comments" file required for
-resubmission.
+action items and Reviewer 1 / Reviewer 2 comments, and
+`response/response_to_comments.tex` to fill in and submit alongside the
+revised manuscript.

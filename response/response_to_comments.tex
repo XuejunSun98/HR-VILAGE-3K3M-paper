@@ -1,0 +1,427 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+\usepackage{parskip}
+\usepackage{enumitem}
+
+% ---------------------------------------------------------------------
+% Formatting helpers
+% ---------------------------------------------------------------------
+\newcommand{\origcomment}[1]{\textit{``#1''}}
+\newcommand{\responsespace}{%
+  \par\medskip\noindent\textbf{Response:}\par
+  \vspace{3.2cm}%
+  \par\noindent\hrulefill\par\bigskip
+}
+\newlist{commentlist}{itemize}{1}
+\setlist[commentlist]{leftmargin=2.2cm, itemsep=1.6em, label=\textbf{[label]}}
+
+\title{Response to Editor and Reviewer Comments}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2.5cm}
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Manuscript title:} & HR-VILAGE-3K3M: A Human Respiratory Viral Immunization \\
+ & Longitudinal Gene Expression Dataset for Systems Immunity \\[4pt]
+\textbf{Journal:} & Scientific Data \\
+\textbf{Submission ID:} & acf167d6-60f5-442f-9760-05d400c4dabd \\
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent We thank the Editor and both reviewers for their careful reading of the manuscript and
+for the constructive comments below. We provide a point-by-point response to every comment.
+Line/page numbers below refer to the revised manuscript unless otherwise noted.
+
+\bigskip
+\noindent \textit{[Optional: insert a short summary of the overall revision here, e.g. that the
+manuscript has been restructured as a Data Descriptor, a Data Records section has been added,
+the Related Work and Potential Applications sections have been removed/condensed, and references
+have been switched to a numbered format.]}
+
+\vspace{1cm}
+\hrule
+\vspace{1cm}
+
+% =======================================================================
+\section*{Response to the Editor}
+% =======================================================================
+
+\subsection*{Specific Editor Comments Requiring a Response}
+
+\begin{commentlist}
+
+\item[E1.] \origcomment{Please note, the 2018 ImmPort publication in Scientific Data was not a
+data descriptor. We would not be able to consider this work under our article format, only as a
+Data Descriptor describing a new, integrated resource that readers would be able to download and
+utilize in their own work. The goal is to share data for others to use, with the details in the
+paper intended to provide transparency (how data were collected or validated) or practical help
+(how to find the data, what variables/column headings mean, etc.). Please do not add any
+additional analyses or results that are out of scope of a Data Descriptor.}
+\responsespace
+
+\item[E2.] \origcomment{Remove the section numbering.}
+\responsespace
+
+\item[E3.] \origcomment{Please use a numbered reference format}
+(\url{https://www.nature.com/sdata/publish/submission-guidelines#references}).
+\responsespace
+
+\item[E4.] \origcomment{Remove `HR-VILAGE-3K3M' from the manuscript title.}
+\responsespace
+
+\item[E5.] \origcomment{Please check the Background and Summary section to ensure it is in scope
+and does not contain any general results, analyses, conclusions or facts relating to what the
+data shows. The section should be limited to brief descriptions of the motivations of the project
+and any relevant prior art. Data Descriptors do not analyse data or present findings, as the goal
+is for others to analyse the data for themselves. Please also condense the `related work' section
+into the Background and Summary section.}
+\responsespace
+
+\item[E6.] \origcomment{Because at least some of your data looks to originate from third party
+datasets, either shared directly or used as input data to compute or train a new output, this
+policy applies, we ask some general questions:}
+
+\textbf{Q1.} \origcomment{Please tell us how you obtained the input data and where from, sharing
+enough detail to allow someone to find the same records. This could include sharing any input
+data DOIs, URLs, accession numbers, or specific search queries for third party platforms. If data
+were not previously available for public download we need to know the manual process for how you
+obtained it, such as the name of the organization, contact details, and method of the
+collaboration, to allow someone else to obtain this via the same route.}
+\responsespace
+
+\textbf{Q2.} \origcomment{Please also confirm that information from Q1 is included in the Methods
+sections (e.g. state the line number).}
+\responsespace
+
+\textbf{Q3.} \origcomment{Please tell us how you ensured you could re-use the data. For data from
+private sources, please confirm the data owner has provided permission for you to re-share these
+data under CC0 or CC-BY licenses (or data usage agreement for identifiable human data). For data
+from public (open / downloadable) sources, please share a link to the license or terms that
+confirm this. Or, if data are not within the scope of copyright at all, confirm this applies
+and/or your re-distribution is acceptable use. Finally, if you are a tertiary user of a secondary
+dataset that is itself sourced from elsewhere, we still request some basic validation is
+performed to ensure the primary source was open and legitimately re-distributed.}
+\responsespace
+
+\item[E7.] \origcomment{Is the data at Lan et al. (2024) peer-reviewed and published? If not,
+please incorporate all data into this work formally. Otherwise, please ensure it is transparent
+in the manuscript text (and response letter) what specific new data has been added to this work
+over that of previous publications. This will be assessed against our related publication policy}
+(\url{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#complementary}).
+\responsespace
+
+\item[E8.] \origcomment{Please see our section for citing data -- given only 66 studies are
+utilized as input, please use the formats outlined at the following link to cite the input data
+at source} (\url{https://www.nature.com/sdata/publish/submission-guidelines#dataoverview}).
+\origcomment{Please also ensure to cite the paper(s) that these data came from.}
+For GEO data: \textit{Lastname, A.B, Lastname, C.D. Lastname, E.F. GEO.}
+\url{https://identifiers.org/geo/GSEXXXXXX} \textit{(20XX)}. For ArrayExpress:
+\textit{Lastname, A.B, Lastname, C.D. Lastname, E.F. ArrayExpress.}
+\url{https://identifiers.org/arrayexpress:E-MTAB-XXXXX} \textit{(20XX)}.
+\responsespace
+
+\item[E9.] \origcomment{Please do not replicate the original input data files at Huggingface, only
+the data product that has been developed for this work and any new data that was not previously
+available should be present at the repository. Please simply cite the inputs so that readers will
+still go to the original resources to obtain these data.}
+\responsespace
+
+\item[E10.] \origcomment{The Data Records section is missing. Please add a Data Records section
+and ensure it provides a description of the files being shared. This should start with an opening
+sentence such as ``The dataset is available at HuggingFace (reference number)'' followed by a
+practical description of the files, including file names and folder structure (where these are
+not obvious or simple) and a description of column headings or variable names (where not
+implicit). No other content, such as a statistical summary of the data, or further methods (place
+these in the methods section), or detailed analyses should be included. If you wish to include
+any summary statistics, please do so in a ``Data overview'' section.}
+\responsespace
+
+\item[E11.] \origcomment{Please add a data citation for the dataset to the reference list using
+these instructions} (\url{https://www.nature.com/sdata/submission-guidelines#data_citations}
+-- \origcomment{note that a DOI URL should be used, not any other link}).
+\origcomment{Please add the reference number to wherever the dataset is mentioned in the text --
+the main position should be the first part of the Data Record in a sentence describing where the
+data has been deposited.}
+\responsespace
+
+\item[E12.] \origcomment{Please check and revise the current Technical Validation section to make
+sure it only contains a summary of how the data were checked or validated. This could include
+statistical checks, comparisons with other data, further discussions of methods or limitations,
+or any other process for quality control. This section should not include general results,
+discussion or analyses -- data analyses are out of scope for Data Descriptors unless they are
+relevant for checking its quality or integrity. Proofs that data can be used for specific use
+cases are not required -- because it is not a requirement that Data Descriptors prove utility for
+specific use cases -- if the data can be considered generally sound, so please consider general
+checks that will be helpful for most users.}
+\responsespace
+
+\item[E13.] \origcomment{Remove the section ``5 Potential HR-VILAGE-3K3M Applications''.}
+\responsespace
+
+\item[E14.] \origcomment{HuggingFace is not set up as a repository we generally accept. Please
+adjust the license to CC-BY, and set up a DOI for the repository. In addition, please ensure the
+metadata for the repository is completed -- generally this will involve setting up authors,
+title, etc. Please then also update the dataset card to note the citation for the dataset so that
+this is easier for readers to find.}
+\responsespace
+
+\end{commentlist}
+
+\subsection*{General Comments}
+\noindent\textit{These are general notes communicated for all manuscripts and, per the Editor, do
+not require an individual written response. Listed here for tracking/checklist purposes only.}
+
+\begin{itemize}[itemsep=0.3em]
+  \item One clean (unhighlighted, no tracked changes) copy of the main article file in a
+  machine-readable format (\texttt{.docx} or \texttt{.tex} only, no PDF;
+  \url{https://www.nature.com/sdata/submission-guidelines#latex}).
+  \item [Optional] A tracked-changes/highlighted version of the paper as a related manuscript
+  file.
+  \item All figure images, one file per figure (merged panels where applicable).
+  \item Supplementary information as a PDF only, if not merged into the main paper.
+  \item Any oversize tables (\textgreater\,1 A4 page) as Supplementary Tables in \texttt{.xlsx} or
+  \texttt{.csv} format.
+  \item This single ``response to comments'' file, answering all Editor and Reviewer comments.
+  \item Confirmation that all datasets are live (not under embargo) and formally cited
+  (\url{https://www.nature.com/sdata/policies/data-policies#publication}).
+\end{itemize}
+
+\clearpage
+% =======================================================================
+\section*{Response to Reviewer 1}
+% =======================================================================
+
+\noindent\textit{[Reviewer 1 summary: the authors have developed a metadata resource integrating
+bulk and single-cell transcriptomic profiles from 3,178 subjects across 66 studies; the reviewer
+notes the resource is not comprehensive and appears to have missed several key datasets, and asks
+that the key issues below be addressed prior to publication.]}
+
+\bigskip
+\subsection*{Major Comments}
+
+\begin{commentlist}
+\setlist[commentlist]{leftmargin=2.2cm, itemsep=1.6em, label=\textbf{[label]}}
+
+\item[R1-1.] \origcomment{Authors should provide PRISMA workflow describing data collection
+process.}
+\responsespace
+
+\item[R1-2.] \origcomment{Most of these vaccine studies are done on adults \textless\,60 years.
+Authors should explicitly show how many samples are coming from the older adults (Age
+distribution of the sample for longitudinal time points) -- for both scRNAseq, bulk RNAseq and
+microarray.}
+\responsespace
+
+\item[R1-3.] \origcomment{What is sample ratio based on vaccine type (Flu IAV, LIAV, Fluzone HS,
+FluAd, Flublok, FLuarix, similarly COVID vaccines and others)?}
+\responsespace
+
+\item[R1-4.] \origcomment{Define Inoculation and mixed exposure.}
+\responsespace
+
+\item[R1-5.] \origcomment{How are single cell data dealt? How are cell types defined -- clarify on
+those details.}
+\responsespace
+
+\item[R1-6.] \origcomment{Donors with high baseline titers mask seroconversion rates. How are
+these donors dealt with? Authors should consider using baseline adjusted methods for response
+categorization (maxRBA from Steve Kleinstein's group).}
+\responsespace
+
+\item[R1-7.] \origcomment{How are they defining response status for other vaccines?}
+\responsespace
+
+\item[R1-8.] \origcomment{Authors should validate the overall processing data by checking known
+vaccination read outs -- interferon signature at day 1, plasmablast expansion at day 7 for
+influenza vaccine. Authors should consider checking these signatures at these time points in case
+of transcriptome cell types.}
+\responsespace
+
+\end{commentlist}
+
+\clearpage
+% =======================================================================
+\section*{Response to Reviewer 2}
+% =======================================================================
+
+\noindent\textit{[Reviewer 2 summary: the paper presents a comprehensive respiratory viral
+transcriptomics dataset integrating microarray, bulk RNAseq, and scRNAseq data from 66 independent
+studies and 3000+ samples. Strengths noted: curation/harmonization effort across 66 studies
+(identifier resolution, antibody data outreach, duplicate removal); public availability via
+Hugging Face; demonstrated utility via prediction and cell-type annotation applications.]}
+
+\bigskip
+\subsection*{Major Comments}
+
+\begin{commentlist}
+\setlist[commentlist]{leftmargin=2.2cm, itemsep=1.6em, label=\textbf{[label]}}
+
+\item[R2-1.] \origcomment{(compare with ImmPort) Explicit positioning of this resource amidst
+related resources like ImmPort or HIPC (and associated visualizer ImmuneSpace) should be
+mentioned in Introduction. Without this explicit positioning, a reader would find it hard to
+assess the extra value added by this resource atop existing resources like ImmPort. For instance,
+ImmPort had compiled 300 studies based on its 2018 publication in Scientific Data. The current
+work takes 66 studies, probably many of them from ImmPort, relevant to respiratory viral
+immunization (including both influenza and COVID) and harmonizes them. Within this context,
+answering the questions below directly in the paper can clarify the value addition of the
+HR-VILAGE resource: (i) What fraction of studies in HR-VILAGE are taken from ImmPort? (ii) Of the
+studies taken from ImmPort, which harmonization or data cleaning was missing in ImmPort, and what
+curation/analysis has been additionally done in HR-VILAGE-3K3M to address these harmonization
+issues? For instance, it is hard to believe that ImmPort did not already handle gene ID issues
+like SEPTIN14. (iii) For the studies in HR-VILAGE taken from GEO and ArrayExpress, was more effort
+required to perform data cleaning and harmonization (compared to studies taken from ImmPort)?}
+\responsespace
+
+\item[R2-2a.] \origcomment{(other modalities) A key limitation of HR-VILAGE-3K3M compared to
+ImmPort is its restriction to transcriptomic/antibody-response data, versus ImmPort's additional
+support for flow cytometry, cytokine, CyTOF, and related datasets. What is the rationale for this
+restriction, given that systems immunology research has largely advanced in recent times due to
+integrative analysis of multi-modal data collected from immune-related human cohorts? Won't this
+restriction limit the utility of HR-VILAGE for future systems immunology analyses or
+re-analyses? This limitation either needs to be acknowledged, alongside the advantages of
+HR-VILAGE over ImmPort; or addressed by including analysis-ready data pertaining to some of these
+extra modalities in HR-VILAGE.}
+\responsespace
+
+\item[R2-2b.] \origcomment{A related point on missing modalities is different assays of
+immune/antibody response such as MN (microneutralization) titers, HAI, and ELISPOT. There is
+mention of HAI in the paper, but the paper is not clear about whether other assays such as MN and
+ELISPOT are stored in HR-VILAGE. Are there studies that have jointly assayed these different
+immune endpoints? If so, it would be useful to store these different endpoints in HR-VILAGE to
+enable alternative definitions of antibody-responders (continuous-valued as well as binary) to
+compare/contrast these outcome definitions from biological and statistical viewpoints.}
+\responsespace
+
+\item[R2-3.] \origcomment{(compare with other repo) Comparative analysis of this resource with
+other independent state-of-the-art resources is missing. While all studies in HR-VILAGE may not
+be available in other independent resources, certain studies may also be present in other
+transcriptomic resources such as recount2/3 and Gene Expression Commons (GEXC). For such common
+studies, what is the qualitative difference between the data preprocessing pipelines employed by
+the different resources, and can the authors quantify the similarities and differences in these
+resources' processed datasets and downstream results?}
+\responsespace
+
+\item[R2-4a.] \origcomment{(why QN, explain AUC) What was the rationale for selecting quantile
+normalization (QN) over alternative approaches for RNAseq harmonization? Was QN performed in a
+class-specific manner (i.e., stratified by responder group as high, medium, low) rather than
+across the pooled dataset? Prior work has shown that whole-dataset QN can distort true biological
+differences, particularly when class-effect proportions are high, whereas class-specific QN
+better preserves such differences (Zhao, Wong \& Goh, Sci Rep, 2020:
+\url{https://www.nature.com/articles/s41598-020-72664-6}).}
+\responsespace
+
+\item[R2-4b.] \origcomment{On a related point, could the authors clarify whether the Transformer
+model used for antibody responder prediction was trained directly on QN-normalized gene
+expression values? If so, how much of the Transformer's predictive performance (AUC = 0.737) can
+be attributed to genuine biological signal vs. artifacts of the QN-induced rank-based rescaling?}
+\responsespace
+
+\item[R2-5a.] \origcomment{(study specific pipeline) While standardized/uniform (pre)processing
+pipelines employed by HR-VILAGE is preferable to reduce methodological variations, another viable
+strategy is to preprocess datasets from different studies in a highly study-specific manner to
+account for study-specific artifacts. Given this context, it is highly advisable for HR-VILAGE to
+not only provide the standardized analysis-ready data for a study, but also the analysis-ready
+data provided by the study's authors whenever available (e.g., from websites/GitHub linked to
+papers such as illustrated here: \url{https://www.tsanglab.org/resources}).}
+\responsespace
+
+\item[R2-5b.] \origcomment{Conversely, focusing on RNAseq data, gene counts data provided by study
+authors is used for certain studies in HR-VILAGE, and gene counts from standardized analysis
+(alignment of fastq files and counts summarization) is used for other studies. For each study,
+both study-author-provided and uniformly-processed pipeline based versions of the gene counts
+matrix should be provided -- i.e., even when RNAseq-based gene counts are available for certain
+studies, HR-VILAGE should also provide gene counts recomputed from its standard pipeline. The
+outcome would be two versions of the resource (study-specific processing and uniform processing),
+useful for QC comparison (e.g., tSNE/PCA) to flag samples with discrepancies between the two
+pipelines.}
+\responsespace
+
+\item[R2-6.] \origcomment{(compare application results with publications) For any of the three
+applications shown, please compare your results with previously published results to indicate
+what is common, and more importantly, what is different, so that there is motivation to do
+reanalysis of these studies, or reinterpret one study in the context of others (as in a
+meta-analysis) to get novel insights. Presenting conserved vs. novel findings, e.g. via simple
+Venn diagram overlaps of marker genes predictive of certain outcomes, may suffice to encourage
+researchers to use this resource for reanalyzing existing viral transcriptomic datasets.}
+\responsespace
+
+\end{commentlist}
+
+\subsection*{Minor Comments and Typos}
+
+\begin{commentlist}
+\setlist[commentlist]{leftmargin=2.2cm, itemsep=1.6em, label=\textbf{[label]}}
+
+\item[R2-m1.] \origcomment{Please cite references for standard scRNAseq processing methods/tools,
+and expand certain symbols like log1p (transformation).}
+\responsespace
+
+\item[R2-m2.] \origcomment{Why repeat the description of dataset preprocessing, transformation,
+and related steps, given originally in Methods, again one more time in Results (e.g., Results
+section text on sex prediction talks about QN and log1p, etc.)? Could you not say in the Results
+section that these tasks use analysis-ready data, preprocessed/normalized as explained in the
+Methods section?}
+\responsespace
+
+\item[R2-m3.] \origcomment{This sentence seems incomplete: ``with AUCs ranging from 0.602 to
+0.702, while ComBat and Regression corrections generally produced lower scores.'' Please fix it.}
+\responsespace
+
+\item[R2-m4.] \origcomment{Figure 2 caption says ``HV-RIGEL-3K'' Dataset instead of
+HR-VILAGE-3K3M. Please fix it.}
+\responsespace
+
+\item[R2-m5.] \origcomment{Day 0 is just before vaccination, day -1, -7 are days prior to
+vaccination (or is it pre1 and pre7), etc. -- are these terms standardized across studies?}
+\responsespace
+
+\item[R2-m6.] \origcomment{Of the samples drawn from the 66 original studies, were all available
+samples retained in the final harmonized dataset, or were some samples excluded based on
+quality-control criteria (e.g., low read depth, RIN score, etc.)? Please clarify.}
+\responsespace
+
+\item[R2-m7.] \origcomment{Text on Page 18 mentions ``six random seeds'' but Figure 2b has no
+error bars for the accuracy and F1 scores. Please fix.}
+\responsespace
+
+\item[R2-m8.] \origcomment{Foundation models may need the scale of HIPC ImmPort (300+ studies).
+With few studies in HR-VILAGE, can foundation models be really trained?}
+\responsespace
+
+\item[R2-m9.] \origcomment{In Section 4.3, what is the overlap of the number of subjects on Day 1
+and Day 7 from the datasets GSE201533 and GSE201534? As per metadata GSE201534 has only 6
+subjects.}
+\responsespace
+
+\item[R2-m10.] \origcomment{Instead of running QC to flag problematic samples, can you also fix
+sample mislabeling or other such issues using approaches such as MODMatcher (PLOS Comput Biol,
+Yoo et al. 2014)? If not fixing these issues, can some diagnostics at least be done to see if
+problematic samples are scattered across studies, or coming exclusively from one or two studies?}
+\responsespace
+
+\item[R2-m11.] \origcomment{Methodological details missing: (i) Could the authors specify the
+reference genome build (e.g., hg38) and the corresponding Gencode annotation version used for
+transcript quantification/alignment? (ii) What guidelines are used to select the datasets to
+include (e.g., search terms in PubMed, inclusion/exclusion criteria of papers, etc.)? Targeted
+search queries in Lan et al. 2024 are not provided here, and the link to the Lan et al. 2024
+F1000 paper is also broken. (iii) For outcome prediction, please add random/naive classifiers'
+F1 score or AUC to all plots, so that a baseline is there to interpret other methods' results
+(e.g., a classifier that randomly predicts the class proportional to the fraction of positive
+samples within each study). Optionally, SHAP or other analysis to see what features are
+contributing to prediction accuracy could also help distinguish biological signals vs. other
+artifacts.}
+\responsespace
+
+\end{commentlist}
+
+\end{document}
