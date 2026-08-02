@@ -18,14 +18,14 @@ project).
 
 - `manuscript/` — current manuscript source (originally exported from
   Overleaf, JASA template).
-  - `template.tex` — the manuscript text.
-  - `bibliography.bib` — references (author-year/natbib style; must move
-    to numbered format per the editor's requirements).
-  - `agsm.bst` — current author-year bibliography style.
-  - `figures/` — the four figures currently used in the manuscript
-    (`RIGEL.png`, `Example_experiment2.png`, `sc_bulk.png`,
-    `Popular_Task.png`; the last is used only in the "Potential
-    Applications" section slated for removal).
+  - `template.tex` — the manuscript text. References are numbered
+    (natbib `numbers` option + `unsrtnat` bibliography style, in
+    citation order), section numbering is off, the title no longer
+    includes the dataset name, and the "Potential Applications" section
+    has been removed, per the editor's requirements.
+  - `bibliography.bib` — references.
+  - `figures/` — the three figures used in the manuscript (`RIGEL.png`,
+    `Example_experiment2.png`, `sc_bulk.png`).
 - `reviews/` — the editor decision letter and both reviewers' comments.
   - `Feedback from the Editor.docx` — original file as received.
   - `editor_and_reviewer_comments.md` — plain-text/markdown transcription

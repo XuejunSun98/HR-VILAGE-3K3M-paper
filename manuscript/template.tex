@@ -391,36 +391,6 @@ For the bulk data, we applied the xCell~\citep{aran2017xcell} algorithm to estim
 
 Comparison between the two modalities reveals consistent temporal trends (Figure~\ref{fig:sc}b--c). Both scRNA-seq–derived cell proportions and xCell enrichment scores indicate an increase in B cells from Day~1 to Day~7, alongside a decrease in monocytes and NK cells. In contrast, T cell levels remain relatively stable across timepoints in the scRNA-seq data, while a modest decline in xCell scores may reflect reduced transcriptional activity or shifts in T cell activation states rather than changes in abundance.
 
-\section{Potential HR-VILAGE-3K3M Applications}
-
-\textbf{Change point detection.}
-The high-resolution transcriptomic data also enable the detection of the onset of cellular or pathway activation using change point analysis. Genes that exhibit the earliest expression changes in a pathway post-immunization are more likely to be driver genes. Additionally, the characteristics of HR-VILAGE-3K3M, including irregular sampling intervals, variable timepoints, and heterogeneous individual responses, make it particularly well-suited for benchmarking change point detection algorithms (Figure \ref{fig:task}a). Furthermore, the availability of single-cell data facilitates the investigation of temporal changes in specific immune cell subsets, such as monocytes or T cells, including shifts in their abundance and pathway-level activation dynamics following immunization.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=\textwidth]{Popular_Task.png}
-  \caption{Potential tasks using HR-VILAGE-3K3M. (a) Change point detection. (b) Gene expression imputation. (c) Causal inference (d) Deconvolution. (e) Building prediction model. (f) Pretraining and fine-tuning. }
-  \label{fig:task}
-\end{figure}
-\textbf{Gene expression imputation.}
-Due to platform-specific differences, the bulk transcriptomic datasets in HR-VILAGE-3K3M exhibit a distinct pattern of missingness, where gene availability is largely determined by the study and profiling platform. This deviates from the assumptions of Missing Completely at Random (MCAR) or Missing at Random (MAR), posing challenges for data integration and downstream analysis. HR-VILAGE-3K3M thus serves as a valuable benchmark for developing and evaluating imputation methods specifically designed to address this structured missingness, thereby enhancing the utility of heterogeneous transcriptomic data (Figure \ref{fig:task}b).
-
-\textbf{Causal inference.}
-Longitudinal studies are particularly effective at establishing cause-and-effect relationships. The HR-VILAGE-3K3M dataset, which contains multiple high-resolution transcriptomic data, offers valuable opportunities to develop advanced statistical methods, such as cross-lagged panel models, structural equation modeling, and dynamic causal modeling, to infer causal relationships. It enhances the validity of causal inferences by controlling for time-varying confounders and reducing biases associated with cross-sectional data. Additionally, the immunization longitudinal dataset captures temporal dynamic changes induced by immunization in the transcriptomic network structure, providing deeper insights into how immunization impacts the regulatory network (Figure \ref{fig:task}c).
-
-\textbf{Deconvolution.}
-Two studies in HR-VILAGE-3K3M contain longitudinal paired bulk and single-cell gene expression data from the same individuals. Using time-series paired samples improves the accuracy of deconvolution methods due to the consistent biological context. Additionally, paired datasets allow for cross-validation, where single-cell data can be used to validate and refine the deconvolution results obtained from bulk data (Figure \ref{fig:task}d).
-
-\textbf{Building Prediction Model.}
-Longitudinal data that integrates bulk and single-cell transcriptomics with clinical and antibody measurements provides a rich foundation for predictive modeling using multimodal deep learning. Models such as RNNs, LSTMs, GRUs, and Transformers are well-suited to capture temporal patterns and cross-modal relationships within this heterogeneous data. These approaches can support a wide range of prediction tasks, including classification (e.g., vaccine responder vs. non-responder), regression (e.g., prediction of antibody titers). By incorporating multiple biological and clinical modalities, these models enable the discovery of early immune signatures, enhance interpretability, and support applications such as risk stratification, response prediction, and personalized immunization strategies (Figure \ref{fig:task}e).
-
-\textbf{Pretraining and Fine-Tuning.}
-The scale of heterogeneity of HR-VILAGE-3K3M makes it a resource for pretraining foundation models to capture complex human immune response dynamics to vaccination and inoculation. By integrating data from a diverse set of studies across platforms, tissues, timepoints, and pathogens, the dataset provides rich biological variation that can drive generalizable feature learning. After pretraining, the model can then be adapted through adaptive fine-tuning for specific downstream tasks (outcome prediction), and transfer learning to smaller, underpowered datasets that benefit from shared temporal or biological structure (Figure \ref{fig:task}f).
-
-
-Overall, HR-VILAGE-3K3M provides a large, high-quality dataset that enables a wide range of downstream analyses and methodological development in systems immunology. By integrating longitudinal gene expression datasets from diverse studies and platforms, HR-VILAGE-3K3M supports the study of dynamic immune responses over time, facilitates cross-study comparisons, and allows robust benchmarking of computational tools.
-
-
 \section{Author Contribution}
 Conceptualization: X.S., F.Z., X.Z.; Methodology: X.S., F.Z., X.Z.; Data curation: X.S., Y.S., X.Z., X.L., R.P., X.Z.; Data infrastructure and resource development: R.C., Data preprocessing and quality control: X.S., Y.S., Y.Z., J.X., M.T.; Data integration: X.S; Data analysis: X.S., Y.S.; Investigation: L.P., B.Z., J.S.H., R.J.P., D.L.; Validation: X.S., F.Z., X.Z.; Supervision: F.Z., X.Z.; Writing—original draft preparation: X.S., Y.S., F.Z., X.Z.; Writing—review and editing:  L.P., B.Z., J.S.H., R.J.P., D.L., F.Z., X.Z.
 
