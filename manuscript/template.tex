@@ -5,7 +5,7 @@
 %
 \documentclass[
   12pt]{article}
-\usepackage[authoryear,round]{natbib} 
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage{hyperref}
 
 
@@ -43,7 +43,7 @@
 \makeatother
 \usepackage{xcolor}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{-2} % no section numbering, per Editor comment
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -81,6 +81,7 @@
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
+\graphicspath{{figures/}}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -145,8 +146,7 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage[]{natbib}
-\bibliographystyle{agsm}
+\bibliographystyle{unsrtnat}
 \usepackage{bookmark}
 
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -180,7 +180,7 @@
 
 
 
-\title{\bf HR-VILAGE-3K3M: A Human Respiratory Viral Immunization Longitudinal Gene Expression Dataset for Systems Immunity}
+\title{\bf A Human Respiratory Viral Immunization Longitudinal Gene Expression Dataset for Systems Immunity}
 
 \newif\ifanonymous
 \anonymoustrue   % <-- set to \anonymousfalse for final submission
@@ -447,8 +447,6 @@ The HR-VILAGE-3K3M dataset is available on Hugging Face (\href{https://huggingfa
 \label{supplementary-material}
 
 \section*{Supplementary Information}
-
-\renewcommand{\thesubsection}{Supplementary~\arabic{subsection}}
 
 \subsection{List of Studies Included in the HR-VILAGE-3K3M Dataset}
 We include the full list of reference of our dataset~\citealp{lindeboom2024human,proud2008gene,davenport2015transcriptomic,muller2017development,habibi2020neutrophilic,liu2016individualized,zhai2015host,sparks2023influenza,jochems2018inflammation,nakaya2015systems,franco2013integrative,bucasas2011early,furman2013apoptosis,furman2014systems,furman2017expression,thakar2015aging,avey2020seasonal,tsang2014global,rinchai2022high,forst2022vaccination,odak2024systems,lee2022comprehensive,lee2022heterologous,lee2022mrna,lee2022prior,ryan2023systems,watanabe2023time,drury2024multi,grewe2024mva,chang2024altered,chang2024network,arunachalam2021systems,wimmers2021single,aydillo2022transcriptome,thwaites2023early,nakaya2011systems,cao2014differences,obermoser2013systems,narang2018influenza,monaco2019rna,carre2021endoplasmic,henn2013high,sarin2024impaired,huang2024interferon,ivanova2023mrna,kim2022germinal,lindeboom2023human,stephenson2024temporal,blazkova2017multicenter,alpert2019clinically,tomic2019fluprint}
