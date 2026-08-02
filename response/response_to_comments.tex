@@ -17,6 +17,11 @@
   \vspace{3.2cm}%
   \par\noindent\hrulefill\par\bigskip
 }
+\newcommand{\filledresponse}[1]{%
+  \par\medskip\noindent\textbf{Response:} #1\par
+  \vspace{0.4cm}%
+  \par\noindent\hrulefill\par\bigskip
+}
 \newlist{commentlist}{itemize}{1}
 \setlist[commentlist]{leftmargin=2.2cm, itemsep=1.6em, label=\textbf{[label]}}
 
@@ -70,14 +75,21 @@ additional analyses or results that are out of scope of a Data Descriptor.}
 \responsespace
 
 \item[E2.] \origcomment{Remove the section numbering.}
-\responsespace
+\filledresponse{Done. Section numbering has been removed throughout the manuscript
+(\texttt{secnumdepth} set so no section, subsection, or subsubsection number prints). All
+headings in the main text and Supplementary Information (e.g., ``Background and Summary,''
+``Methods,'' ``Technical Validation'') now appear without numeric prefixes.}
 
 \item[E3.] \origcomment{Please use a numbered reference format}
 (\url{https://www.nature.com/sdata/publish/submission-guidelines#references}).
-\responsespace
+\filledresponse{Done. References have been switched from the author-year format to a numbered
+format: in-text citations now appear as bracketed numbers in order of first citation (e.g.,
+[1], [2]), and the reference list is numbered accordingly in that same citation order.}
 
 \item[E4.] \origcomment{Remove `HR-VILAGE-3K3M' from the manuscript title.}
-\responsespace
+\filledresponse{Done. The dataset name has been removed from the title. The title now reads:
+``A Human Respiratory Viral Immunization Longitudinal Gene Expression Dataset for Systems
+Immunity.''}
 
 \item[E5.] \origcomment{Please check the Background and Summary section to ensure it is in scope
 and does not contain any general results, analyses, conclusions or facts relating to what the
