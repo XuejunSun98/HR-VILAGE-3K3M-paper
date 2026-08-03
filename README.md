@@ -18,11 +18,19 @@ project).
 
 - `manuscript/` — current manuscript source (originally exported from
   Overleaf, JASA template).
-  - `template.tex` — the manuscript text. References are numbered
-    (natbib `numbers` option + `unsrtnat` bibliography style, in
-    citation order), section numbering is off, the title no longer
-    includes the dataset name, and the "Potential Applications" section
-    has been removed, per the editor's requirements.
+  - `template.tex` — the manuscript text, clean (no markup). References
+    are numbered (natbib `numbers` option + `unsrtnat` bibliography
+    style, in citation order), section numbering is off, the title no
+    longer includes the dataset name, the "Potential Applications"
+    section has been removed, and "Related Work" has been condensed into
+    "Background and Summary" (no results/analyses/conclusions about the
+    data itself), per the editor's requirements.
+  - `template_trackchanges.tex` — same content as `template.tex` but with
+    the Editor comment E5 edit (Related Work condensed into Background
+    and Summary) marked up in color: red text was removed, blue text is
+    new/rewritten. Provided for reviewer convenience alongside the clean
+    file, per the "optional tracked-changes version" allowed in the
+    resubmission package.
   - `bibliography.bib` — references.
   - `figures/` — the three figures used in the manuscript (`RIGEL.png`,
     `Example_experiment2.png`, `sc_bulk.png`).
