@@ -125,11 +125,24 @@ data DOIs, URLs, accession numbers, or specific search queries for third party p
 were not previously available for public download we need to know the manual process for how you
 obtained it, such as the name of the organization, contact details, and method of the
 collaboration, to allow someone else to obtain this via the same route.}
-\responsespace
+\filledresponse{Gene expression data were obtained from three publicly available repositories:
+GEO, ImmPort, and ArrayExpress. The original collection was assembled via targeted search queries
+against these repositories, as detailed in Lan et al.~(2024); HR-VILAGE-3K3M extends this
+collection with additional studies identified using the same targeted-search protocol against
+records added since that collection. Metadata (outcome variables, subject characteristics) were
+obtained from GEO, ImmPort, and the supplementary files of the original publications.
+Subject-level antibody titers not already deposited in GEO/ImmPort or included in supplementary
+files were requested directly from the corresponding authors of the original publications via
+email. Accession numbers, repository names, and direct URLs for all 66 constituent studies are
+provided in Supplementary Table 1, allowing every record to be located directly.}
 
 \textbf{Q2.} \origcomment{Please also confirm that information from Q1 is included in the Methods
 sections (e.g. state the line number).}
-\responsespace
+\filledresponse{Yes. This information is stated in Methods, ``Data collection and curation''
+paragraph (\texttt{template.tex}, line 252), which describes the repositories and search protocol
+used to assemble the gene expression and metadata, the process for obtaining subject-level
+antibody titers, and now also references Supplementary Table 1 for the complete list of accession
+numbers and repository links for all 66 studies.}
 
 \textbf{Q3.} \origcomment{Please tell us how you ensured you could re-use the data. For data from
 private sources, please confirm the data owner has provided permission for you to re-share these
@@ -139,14 +152,41 @@ confirm this. Or, if data are not within the scope of copyright at all, confirm 
 and/or your re-distribution is acceptable use. Finally, if you are a tertiary user of a secondary
 dataset that is itself sourced from elsewhere, we still request some basic validation is
 performed to ensure the primary source was open and legitimately re-distributed.}
-\responsespace
+\filledresponse{For data obtained from GEO, ArrayExpress, and ImmPort, all three repositories
+confirm re-use rights for depositor-submitted data: NCBI states that it places no restrictions on
+the use or distribution of GEO data
+(\url{https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html}); EMBL-EBI's Terms of Use impose no
+additional restriction on ArrayExpress data beyond those set by the data owner
+(\url{https://www.ebi.ac.uk/about/terms-of-use}); and the ImmPort Data Use Agreement grants the
+unrestricted right to use and distribute ImmPort data, provided redistribution occurs under
+commensurate terms (\url{https://docs.immport.org/home/agreement}). \textbf{[TO DISCUSS: re-use
+confirmation for subject-level antibody titers obtained directly from study authors via
+email --- to be added once resolved.]}}
 
 \item[E7.] \origcomment{Is the data at Lan et al. (2024) peer-reviewed and published? If not,
 please incorporate all data into this work formally. Otherwise, please ensure it is transparent
 in the manuscript text (and response letter) what specific new data has been added to this work
 over that of previous publications. This will be assessed against our related publication policy}
 (\url{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#complementary}).
-\responsespace
+\filledresponse{Lan et al. is now peer-reviewed and published: F1000Research 2025, 14:493
+(\url{https://doi.org/10.12688/f1000research.162267.1}), first published 13 May 2025, status
+``version 1; peer review: 1 approved with reservations,'' distributed under a CC-BY license. The
+bibliography entry has been updated accordingly (from the ``awaiting peer review'' status cited in
+our earlier preprint to the current published, peer-reviewed status).
+
+Lan et al. is a dataset-discovery and curation paper: it systematically searched GEO, ImmPort, and
+ArrayExpress and compiled a list of 55 relevant datasets (18 inoculation, 37 vaccination;
+approximately 2,513 subjects total), but does not reprocess, harmonize, or host the underlying
+expression data itself --- it identifies and describes existing third-party datasets for others to
+download and analyze independently. HR-VILAGE-3K3M is a distinct data product built on top of
+that search process: it extends the collection to 66 studies and over 3,000 subjects (additional
+recent studies, broader ``mixed exposure'' scope beyond the inoculation/vaccination dichotomy, and
+curated subject-level antibody measurements obtained directly from study authors), and, critically,
+delivers a harmonized, quality-controlled, ready-to-use gene expression and metadata product (with
+standardized gene symbols, aligned sample identifiers, and standardized outcome definitions across
+studies) rather than a list of source datasets. This distinction, and the specific numeric
+comparison to Lan et al., is now stated explicitly in Methods, ``Data collection and curation''
+paragraph (\texttt{template.tex}, line 252).}
 
 \item[E8.] \origcomment{Please see our section for citing data -- given only 66 studies are
 utilized as input, please use the formats outlined at the following link to cite the input data
@@ -172,7 +212,20 @@ not obvious or simple) and a description of column headings or variable names (w
 implicit). No other content, such as a statistical summary of the data, or further methods (place
 these in the methods section), or detailed analyses should be included. If you wish to include
 any summary statistics, please do so in a ``Data overview'' section.}
-\responsespace
+\filledresponse{Done. A new Data Records section has been added between Methods and Technical
+Validation, opening with a sentence naming the Hugging Face repository
+(\texttt{xuejun72/HR-VILAGE-3K3M}) and its URL. (A formal DOI-based reference number for the
+repository, per E11 below, will be inserted at the same location once the Hugging Face DOI is
+minted.) The section then describes the repository's file and folder structure --- the top-level
+\texttt{study\_meta.csv} index, the five per-study data folders (\texttt{bulk\_gene\_expr/},
+\texttt{bulk\_gene\_expr\_raw/}, \texttt{single\_cell\_gene\_expr/}, \texttt{meta/},
+\texttt{antibody/}), and the supporting reference files (\texttt{Meta\_variable\_description.csv},
+\texttt{example\_dataset/}, \texttt{croissant.json}, \texttt{relation.png}) --- along with the
+column headings for \texttt{study\_meta.csv} and the \texttt{meta/} files. Consistent with this
+comment, no statistical summaries or additional methods detail were included in this section; the
+existing statistical summary at the end of Methods (participant/study counts, platform and
+sample-type breakdowns) was left in place there rather than duplicated or moved, since it is
+methods-adjacent descriptive summary rather than a new result.}
 
 \item[E11.] \origcomment{Please add a data citation for the dataset to the reference list using
 these instructions} (\url{https://www.nature.com/sdata/submission-guidelines#data_citations}
