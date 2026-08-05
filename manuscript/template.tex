@@ -291,8 +291,6 @@ The complete HR-VILAGE-3K3M dataset described in this Data Descriptor is deposit
 
 \noindent\textbf{\texttt{bulk\_gene\_expr/}.} One CSV file per bulk (microarray or RNA-seq) study, named \texttt{<study\_ID>\_gene\_expr.csv}, containing processed, normalized expression values in sample-by-gene format: rows are sample identifiers (matching \texttt{geo\_accession}/\texttt{ID} in the corresponding \texttt{meta/} file) and columns are HGNC gene symbols. All files share the same 41,667 gene columns, so that files can be concatenated directly across studies.
 
-\noindent\textbf{\texttt{bulk\_gene\_expr\_raw/}.} One CSV file per study, named \texttt{<study\_ID>\_raw.csv}, containing the raw, unnormalized probe-level or gene-level expression matrix (probe/gene-by-sample) as available from the original source, provided to support custom reprocessing.
-
 \noindent\textbf{\texttt{single\_cell\_gene\_expr/}.} One AnnData object per scRNA-seq study (\texttt{<study\_ID>\_processed.h5ad}), with raw count matrices stored in \texttt{.X} and cell-level metadata (e.g., cell type, sample ID, timepoint) stored in \texttt{.obs}. A merged object, \texttt{combined.h5ad.gz}, concatenates all scRNA-seq studies over a shared set of genes and additionally includes PCA and UMAP embeddings and neighborhood-graph information for visualization.
 
 \noindent\textbf{\texttt{meta/}.} One CSV file per study, named \texttt{<study\_ID>\_meta.csv}, row-aligned with the corresponding file in \texttt{bulk\_gene\_expr/}. All metadata files share a common column set (a subset of columns applies to any given study, per its \texttt{meta\_variable\_list} entry in \texttt{study\_meta.csv}); missing values are coded as \texttt{NA}. Columns include, among others: \texttt{geo\_accession} and \texttt{ID} (sample and subject identifiers), \texttt{study\_ID}, \texttt{tissue}, \texttt{platform}, \texttt{pathogen}, \texttt{timepoint} and \texttt{timepoint\_group}, \texttt{infection\_group} and \texttt{symptom\_group} (inoculation-study outcomes), \texttt{MFC} and \texttt{responder} (vaccine-study outcomes), \texttt{sex}, \texttt{age} and \texttt{age\_group}, \texttt{vaccine} and \texttt{vaccine\_dose}, and additional demographic and clinical variables (e.g., \texttt{BMI}, \texttt{ethnicity}, \texttt{race}, \texttt{Medications}, \texttt{Current.smoker}). The complete list of column names and their definitions is provided in \texttt{Meta\_variable\_description.csv}.
@@ -387,6 +385,36 @@ For the single-cell data, since the original study lacked curated cell type anno
 For the bulk data, we applied the xCell~\citep{aran2017xcell} algorithm to estimate enrichment scores for major immune cell types, including B cells, T cells, monocytes, and natural killer cells. Enrichment scores were computed by aggregating xCell subtype scores into cell type level, followed by averaging across samples for each time point. Unlike scRNA-seq-based proportions, xCell scores from bulk RNA-seq reflect both immune cell-type abundance and transcriptional activity, as the algorithm infers enrichment scores based on predefined gene signatures that capture cell-type-specific expression patterns. Importantly, xCell scores are not compositional and are not constrained to sum to one as they are influenced not only by cell frequency but also by the activation state of the cell populations. 
 
 Comparison between the two modalities reveals consistent temporal trends (Figure~\ref{fig:sc}b--c). Both scRNA-seq–derived cell proportions and xCell enrichment scores indicate an increase in B cells from Day~1 to Day~7, alongside a decrease in monocytes and NK cells. In contrast, T cell levels remain relatively stable across timepoints in the scRNA-seq data, while a modest decline in xCell scores may reflect reduced transcriptional activity or shifts in T cell activation states rather than changes in abundance.
+
+\section{Usage Notes}
+
+All files can be downloaded directly from the Hugging Face repository and read with standard tools (e.g., \texttt{pandas} for the CSV files, \texttt{anndata} for the single-cell \texttt{.h5ad} files). We additionally provide a Python interface via the Hugging Face \texttt{datasets} package. \texttt{study\_meta.csv} can be loaded directly:
+
+\begin{verbatim}
+from datasets import load_dataset
+repo = "xuejun72/HR-VILAGE-3K3M"
+ds = load_dataset(repo, name="study_meta",
+                   trust_remote_code=True, revision="script")
+study_meta = ds["train"].to_pandas()
+\end{verbatim}
+
+The \texttt{meta/} and \texttt{bulk\_gene\_expr/} folders can each be loaded and concatenated across all studies in the same way (\texttt{name="meta"} or \texttt{name="bulk\_gene\_expr"}). Because studies differ in which metadata columns and platforms apply, an optional \texttt{split\_filter} argument restricts loading to a subset of studies matching criteria drawn from \texttt{study\_meta.csv} (e.g., \texttt{study\_type}, \texttt{platform}, \texttt{tissue}, \texttt{pathogen}, \texttt{vaccine}), avoiding the need to download the full repository:
+
+\begin{verbatim}
+split_filter = {"study_type": ["vaccine"],
+                 "platform": ["RNA-seq"],
+                 "tissue": ["PBMC", "nasal swab"]}
+ds = load_dataset(repo, name="meta", trust_remote_code=True,
+                   split_filter=split_filter, revision="script")
+\end{verbatim}
+
+Individual \texttt{antibody/} files, which differ in column structure across studies, should instead be loaded one study at a time via their file path:
+
+\begin{verbatim}
+load_dataset(repo, data_files="antibody/GSE194378_antibody.csv")
+\end{verbatim}
+
+\noindent Single-cell files are loaded with \texttt{anndata} after download (e.g.\ \texttt{ad.read\_h5ad(...)}), exposing raw counts in \texttt{.X} and cell-level metadata in \texttt{.obs}; the merged \texttt{combined.h5ad.gz} object additionally includes precomputed PCA/UMAP embeddings for immediate visualization across all single-cell studies. New users are encouraged to first inspect \texttt{example\_dataset/}, which provides matched metadata, gene expression, and antibody files for a single study (GSE194378) to illustrate how records are linked by sample identifier before working with the full repository. Complete, up-to-date loading examples, including code for reproducing the analyses in this manuscript, are maintained at \url{https://xuejunsun98.github.io/HR-VILAGE-3K3M/docs/index.html} and on the Hugging Face repository page.
 
 \section{Author Contribution}
 Conceptualization: X.S., F.Z., X.Z.; Methodology: X.S., F.Z., X.Z.; Data curation: X.S., Y.S., X.Z., X.L., R.P., X.Z.; Data infrastructure and resource development: R.C., Data preprocessing and quality control: X.S., Y.S., Y.Z., J.X., M.T.; Data integration: X.S; Data analysis: X.S., Y.S.; Investigation: L.P., B.Z., J.S.H., R.J.P., D.L.; Validation: X.S., F.Z., X.Z.; Supervision: F.Z., X.Z.; Writing—original draft preparation: X.S., Y.S., F.Z., X.Z.; Writing—review and editing:  L.P., B.Z., J.S.H., R.J.P., D.L., F.Z., X.Z.
