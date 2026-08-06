@@ -390,7 +390,20 @@ other baseline-adjusted metric themselves for their own analysis, alongside our 
 responder-definition text.}
 
 \item[R1-7.] \origcomment{How are they defining response status for other vaccines?}
-\responsespace
+\filledresponse{Unlike influenza, where HAI titer is measured uniformly across nearly all
+constituent studies (enabling the single MFC-based definition in R1-6), COVID-19 vaccine studies in
+HR-VILAGE-3K3M measure antibody response using different assays from study to study (binding vs.\
+neutralizing antibody, against different antigens/variants), so we did not find a way to apply one
+uniform response definition across them without discarding information or forcing an inappropriate
+common assay. Instead: where the source study itself defined a responder/outcome classification, we
+retain that study-specific definition in the metadata; where it did not, we provide the raw binding
+and/or neutralizing antibody measurements in the \texttt{antibody} folder so users can define their
+own response criteria appropriate to the assay and research question, consistent with the existing
+statement in Methods (\texttt{template.tex}, line 279: ``For COVID-19 vaccine studies, where no
+universal response definition exists, we provided binding and neutralizing antibody data in the
+antibody folder, allowing users to define customized outcome criteria...''). We will expand this
+sentence to explicitly state the reason (heterogeneous assays across studies, unlike HAI for
+influenza) rather than leaving it implicit.}
 
 \item[R1-8.] \origcomment{Authors should validate the overall processing data by checking known
 vaccination read outs -- interferon signature at day 1, plasmablast expansion at day 7 for
