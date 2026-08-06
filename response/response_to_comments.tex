@@ -409,7 +409,17 @@ influenza) rather than leaving it implicit.}
 vaccination read outs -- interferon signature at day 1, plasmablast expansion at day 7 for
 influenza vaccine. Authors should consider checking these signatures at these time points in case
 of transcriptome cell types.}
-\responsespace
+\filledresponse{Done. New Technical Validation subsection, ``Known Vaccination Response
+Signatures'' (\texttt{template.tex}, after Batch-Effect Correction Assessment): using paired,
+within-subject module scores (baseline-normalized) computed from literature-standard marker genes
+across microarray and RNA-seq influenza vaccine studies, the interferon-stimulated-gene signature
+increases from baseline to Day 1 in 86.9\% of 412 paired subjects (Wilcoxon $p=2.9\times10^{-56}$),
+and the plasmablast signature increases from baseline to Day 7 in 81.3\% of 713 paired subjects
+($p=5.0\times10^{-67}$) -- both consistent with the expected biology. We note RNA-seq contributes
+only 5 paired subjects per comparison, so this check is presently powered mainly by the
+microarray-derived subset; a per-platform breakdown is stated in the text. We have not yet extended
+this check to cell-type-resolved expression within the scRNA-seq data specifically; that is a
+natural follow-up if the reviewer considers it necessary for this revision.}
 
 \end{commentlist}
 

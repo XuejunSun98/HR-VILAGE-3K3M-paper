@@ -374,6 +374,25 @@ Regression & $<$0.0001 \\
 
 QN alone does not remove study-driven separation: study clusters remain visually distinct after QN (Figure~\ref{fig:batcheffect}, top row), and the fraction of variance explained by study identity is essentially unchanged from the uncorrected data (0.818 vs.\ 0.845; Table~\ref{tab:batch_variance}), consistent with QN acting on the marginal distribution of each sample rather than on study-level batch structure. ComBat and Regression both bring samples from different studies into close alignment (Figure~\ref{fig:batcheffect}, middle and bottom rows), reducing the variance explained by study identity to near zero (Table~\ref{tab:batch_variance}), while responder status and timepoint remain distributed similarly across the corrected space rather than collapsing into separate corrected-away clusters, indicating that batch correction does not trivially remove biological variation along with study-driven variation.
 
+\subsection{Known Vaccination Response Signatures}
+
+As a check that processing preserves expected biological signal, we tested for two well-established post-influenza-vaccination transcriptional signatures~\citep{nakaya2011systems,nakaya2015systems}: an interferon-stimulated gene (ISG) response at Day 1 and a plasmablast expansion signature at Day 7. For each subject with a baseline (Day 0) sample and a Day 1 or Day 7 sample, we computed a module score (mean of gene-wise $z$-scored expression across marker genes, using processed values from microarray and RNA-seq influenza vaccine studies) using literature-standard marker sets: ISGs \texttt{IFI27}, \texttt{IFI44L}, \texttt{ISG15}, \texttt{MX1}, \texttt{OAS1} for Day 1, and plasmablast markers \texttt{TNFRSF17}, \texttt{IRF4}, \texttt{XBP1}, \texttt{PRDM1}, \texttt{CD38} for Day 7, and compared each subject's post-vaccination score to their own baseline with a paired Wilcoxon signed-rank test.
+
+\begin{table}[ht]
+\centering
+\caption{Known vaccination response signatures: paired within-subject module-score change from baseline.}
+\begin{tabular}{lccc}
+\hline
+\textbf{Signature (day)} & \textbf{N paired subjects} & \textbf{\% subjects increased} & \textbf{Wilcoxon $p$} \\
+\hline
+Interferon-stimulated genes (Day 1) & 412 & 86.9\% & $2.9\times10^{-56}$ \\
+Plasmablast markers (Day 7) & 713 & 81.3\% & $5.0\times10^{-67}$ \\
+\hline
+\end{tabular}
+\label{tab:known_signatures}
+\end{table}
+
+Both signatures increased from baseline in the large majority of subjects (Table~\ref{tab:known_signatures}), consistent with the expected timing of the innate interferon response and the adaptive plasmablast expansion following influenza vaccination. Coverage across platforms is uneven for this comparison: RNA-seq contributes only 5 paired subjects at each timepoint (all remaining pairs are microarray), too few to test separately, so this check is presently powered primarily by the microarray-derived subset.
 
 \subsection{Cell Type Annotation Using Paired Bulk and Single-Cell Data}
 
