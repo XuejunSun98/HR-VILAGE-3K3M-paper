@@ -376,7 +376,18 @@ example, so the response accurately reflects what was done resource-wide.]}}
 \item[R1-6.] \origcomment{Donors with high baseline titers mask seroconversion rates. How are
 these donors dealt with? Authors should consider using baseline adjusted methods for response
 categorization (maxRBA from Steve Kleinstein's group).}
-\responsespace
+\filledresponse{Response status for influenza vaccine studies is defined by Maximum Fold Change
+(MFC) in HAI titer, following the HIPC-CHI Signatures Project/HIPC-I Consortium consensus definition (\textit{Sci.
+Immunol.} 2017): high
+responders have MFC~$\geq$4 and Day~28 HAI~$\geq$40, non-responders MFC~$\leq$1, and the remainder
+are moderate responders (\texttt{template.tex}, line 279). We agree this MFC-based definition does
+not itself adjust for baseline titer, so high-baseline-titer donors with limited room to rise can be
+undercounted as non-responders. Rather than impose a single baseline-adjusted definition (e.g.\
+maxRBA) across all studies, we provide the underlying raw baseline and post-vaccination HAI titers
+for every subject in the \texttt{antibody} folder, precisely so users can compute maxRBA or any
+other baseline-adjusted metric themselves for their own analysis, alongside our default MFC-based
+\texttt{responder} field. This will be stated explicitly in the manuscript alongside the existing
+responder-definition text.}
 
 \item[R1-7.] \origcomment{How are they defining response status for other vaccines?}
 \responsespace
