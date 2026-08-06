@@ -330,14 +330,48 @@ paragraph at the end of Methods, alongside the existing participant/study/platfo
 
 \item[R1-3.] \origcomment{What is sample ratio based on vaccine type (Flu IAV, LIAV, Fluzone HS,
 FluAd, Flublok, FLuarix, similarly COVID vaccines and others)?}
-\responsespace
+\filledresponse{Note first that the underlying studies mostly record vaccine \emph{type} (e.g.\
+TIV/LAIV/QIV) rather than brand name, so a brand-level breakdown (Fluzone, FluAd, Flublok, Fluarix,
+etc.) is not recoverable for most studies; we report by type/platform instead. Subject-level
+counts across the 2,724 vaccine/mixed-exposure subjects with a recorded vaccine field: Influenza TIV
+(inactivated), 1,463; COVID-19 mRNA (BNT162b2/Moderna), 288; Influenza LAIV (live attenuated), 106;
+COVID-19 viral-vector (ChAdOx1-based), 91; Influenza QIV (quadrivalent inactivated), 73; MenACWY
+(meningococcal, used as a comparator arm in some influenza studies), 53; H5N1 (pandemic influenza),
+50; Influenza LAIV/IIV combination-dose regimens, 44; saline/PBS/Pneumovax controls, 37; COVID-19
+viral-vector (MVA-SARS-2 candidate), 25. (494 additional subjects are from inoculation studies, where
+the vaccine field does not apply.) This breakdown will be added to Supplementary Table 1 or a new
+supplementary table, and summarized in Methods.}
 
 \item[R1-4.] \origcomment{Define Inoculation and mixed exposure.}
-\responsespace
+\filledresponse{\textbf{Inoculation} refers to controlled human infection model (human challenge)
+studies, in which healthy volunteers are deliberately exposed to a defined dose of a respiratory
+virus under controlled clinical conditions, allowing precise control over exposure timing and dose
+relative to sampling -- as distinct from natural, community-acquired infection. \textbf{Mixed
+exposure} refers to studies in which subjects experience more than one type of immune exposure,
+in combination or in sequence: post-vaccination infection (breakthrough infection after
+vaccination), post-infection vaccination (vaccination in previously infected/seropositive
+individuals), and natural infection without a controlled inoculation. These definitions will be
+added explicitly to the manuscript (Background and Summary or Methods) rather than left implicit in
+the summary statistics, as currently. \textbf{[Jing, please check this definition and confirm/refine
+the definition of ``mixed exposure,'' since that term is specific to our own categorization rather
+than a standard field term.]}}
 
 \item[R1-5.] \origcomment{How are single cell data dealt? How are cell types defined -- clarify on
 those details.}
-\responsespace
+\filledresponse{Processing (already in Methods, \texttt{template.tex} lines 258 and 275): source
+files (h5ad, 10x matrix, or R objects, with or without metadata) are integrated into a Python
+AnnData object per study, with cell barcodes prefixed by dataset identifier to ensure global
+uniqueness; the primary expression matrix is verified/reassigned from raw count layers; genes
+expressed in fewer than 10 cells are removed; total-count normalization (target sum 10,000) and
+\texttt{log1p} are applied; and metadata fields are standardized across datasets (missing columns
+added as NA) for consistent downstream integration. Cell type definition: most constituent
+scRNA-seq studies already include author-provided cell-type annotations in their deposited
+metadata, which we retain as-is. Where a study lacks curated annotations (e.g., GSE201533/GSE201534,
+used in the Cell Type Annotation validation), we apply \texttt{SingleR} (reference-based) and
+\texttt{GPTCelltype} (LLM-based) and reconcile the two, as described in Technical Validation.
+\textbf{[Yiran, please confirm whether this reconciliation approach was applied to every study
+lacking curated annotations, or only to the GSE201533/GSE201534 pair shown as the validation
+example, so the response accurately reflects what was done resource-wide.]}}
 
 \item[R1-6.] \origcomment{Donors with high baseline titers mask seroconversion rates. How are
 these donors dealt with? Authors should consider using baseline adjusted methods for response
