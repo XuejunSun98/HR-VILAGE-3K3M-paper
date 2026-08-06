@@ -23,3 +23,24 @@ Action items on `xuejun72/HR-VILAGE-3K3M`:
 The manuscript text (Data Records section) and the E9 response letter have
 already been updated to reflect this decision, assuming the above repo
 changes are made to match.
+
+## For editor comment E14 (repository requirements)
+
+DOI is done: `10.57967/hf/9892` (already added to the manuscript and
+`bibliography.bib`). Still needed on the HF repo itself:
+
+4. **License**: set the dataset card's license to CC-BY. This is a YAML
+   metadata field at the top of the repo's `README.md`:
+   ```yaml
+   ---
+   license: cc-by-4.0
+   ---
+   ```
+   Can be edited directly in the README or via the "Edit dataset card"
+   metadata UI on the repo page.
+5. **Repository metadata**: make sure the dataset card lists the full
+   author list and title (matching the manuscript's author list).
+6. **Dataset card citation**: add a "Citation" section to the README
+   referencing the DOI-based citation (`10.57967/hf/9892`) so readers can
+   find how to cite the dataset directly from the repo page.
+

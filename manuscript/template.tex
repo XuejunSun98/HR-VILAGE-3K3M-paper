@@ -285,7 +285,7 @@ We generated a rigorously processed meta-source benchmark expression dataset, HR
 
 \section{Data Records}
 
-The complete HR-VILAGE-3K3M dataset described in this Data Descriptor is deposited in the Hugging Face Datasets repository \texttt{xuejun72/HR-VILAGE-3K3M}, available at \url{https://huggingface.co/datasets/xuejun72/HR-VILAGE-3K3M}. The repository is organized into one top-level study index, four per-study data folders, and a small set of supporting reference files. Raw (unprocessed) input files are not mirrored in this repository; where available, they can be obtained from the original source repository (GEO, ArrayExpress, or ImmPort) cited for each study in Supplementary Table 1.
+The complete HR-VILAGE-3K3M dataset described in this Data Descriptor is deposited in the Hugging Face Datasets repository \texttt{xuejun72/HR-VILAGE-3K3M}, available at \url{https://huggingface.co/datasets/xuejun72/HR-VILAGE-3K3M} (data citation: \citep{sun2026hrvilagedataset}). The repository is organized into one top-level study index, four per-study data folders, and a small set of supporting reference files. Raw (unprocessed) input files are not mirrored in this repository; where available, they can be obtained from the original source repository (GEO, ArrayExpress, or ImmPort) cited for each study in Supplementary Table 1.
 
 \noindent\textbf{\texttt{study\_meta.csv}.} A single table with one row per study (66 rows) that serves as the entry point to the repository. Columns are: \texttt{study\_ID} (study identifier, matching the folder/file names below); \texttt{platform} and \texttt{platform\_detail} (microarray, RNA-seq, or scRNA-seq, with the specific array/sequencer); \texttt{study\_type} (vaccine, inoculation, or mixed exposure); \texttt{pathogen} and \texttt{vaccine}; \texttt{tissue}; \texttt{raw\_data} and \texttt{antibody} (flags indicating whether raw expression data and antibody measurements are available for that study); \texttt{num\_subjects}, \texttt{num\_observations}, \texttt{num\_cells}, and \texttt{num\_observed\_genes}; \texttt{number\_of\_timepoints median(min, max)} and \texttt{observed\_timepoints}; and \texttt{meta\_variable\_list}, listing the metadata columns available for that study.
 
@@ -435,7 +435,7 @@ The authors declare that they have no conflict of interest
 
 \section{Data Availability Statement}\label{data-availability-statement}
 
-The HR-VILAGE-3K3M dataset is available on Hugging Face (\href{https://huggingface.co/datasets/xuejun72/HR-VILAGE-3K3M}{\texttt{xuejun72/HR-VILAGE-3K3M}}), with analysis code accessible on both Hugging Face and GitHub (\href{https://github.com/XuejunSun98/HR-VILAGE-3K3M}{\texttt{XuejunSun98/HR-VILAGE-3K3M}}). Version~1 was released on May~17,~2025, followed by version~2 on October~13,~2025.
+The HR-VILAGE-3K3M dataset is available on Hugging Face (\href{https://huggingface.co/datasets/xuejun72/HR-VILAGE-3K3M}{\texttt{xuejun72/HR-VILAGE-3K3M}}; DOI: \href{https://doi.org/10.57967/hf/9892}{10.57967/hf/9892}), with analysis code accessible on both Hugging Face and GitHub (\href{https://github.com/XuejunSun98/HR-VILAGE-3K3M}{\texttt{XuejunSun98/HR-VILAGE-3K3M}}). Version~1 was released on May~17,~2025, followed by version~2 on October~13,~2025.
 
 \clearpage
 \phantomsection
