@@ -196,13 +196,32 @@ For GEO data: \textit{Lastname, A.B, Lastname, C.D. Lastname, E.F. GEO.}
 \url{https://identifiers.org/geo/GSEXXXXXX} \textit{(20XX)}. For ArrayExpress:
 \textit{Lastname, A.B, Lastname, C.D. Lastname, E.F. ArrayExpress.}
 \url{https://identifiers.org/arrayexpress:E-MTAB-XXXXX} \textit{(20XX)}.
-\responsespace
+\filledresponse{Both citation requirements are now addressed for the 59 constituent microarray and
+RNA-seq studies (the remaining 7 scRNA-seq studies will be completed in the same way). (i)
+\emph{Paper citations:} rather than being left only in a supplementary list, the source
+publication(s) for each of these studies are now cited in-text at their point of use, in Methods,
+``Data collection and curation'' paragraph (\texttt{template.tex}, line 252), and included in the
+numbered reference list via \texttt{bibliography.bib}. (ii) \emph{Data citations:} formal,
+Nature-format data citations for each of the 66 constituent studies --- \textit{Lastname, A.B. et
+al. GEO.} \url{https://identifiers.org/geo/GSEXXXXXX} \textit{(20XX)} for GEO studies and the
+corresponding ArrayExpress/ImmPort forms otherwise --- are provided in the \texttt{data\_citation}
+column of Supplementary Table 1, generated from each study's own GEO/ArrayExpress/ImmPort
+contributor and submission metadata rather than invented placeholders.}
 
 \item[E9.] \origcomment{Please do not replicate the original input data files at Huggingface, only
 the data product that has been developed for this work and any new data that was not previously
 available should be present at the repository. Please simply cite the inputs so that readers will
 still go to the original resources to obtain these data.}
-\responsespace
+\filledresponse{Done. The raw (unprocessed) input files are being removed from the Hugging Face
+repository; only the harmonized, quality-controlled data product (processed expression matrices,
+standardized metadata, and curated antibody measurements) is retained there, together with any
+newly created data (e.g., curated subject-level antibody titers obtained directly from study
+authors) that was not previously available elsewhere. Readers seeking the original raw files are
+directed to the source repository for each study rather than to a local copy: the
+\texttt{study\_meta.csv} index and Supplementary Table 1 cite each of the 66 constituent studies at
+its original GEO, ArrayExpress, or ImmPort accession, from which the raw files can be obtained
+directly. This is now stated in the Data Records section (\texttt{template.tex}, opening
+paragraph).}
 
 \item[E10.] \origcomment{The Data Records section is missing. Please add a Data Records section
 and ensure it provides a description of the files being shared. This should start with an opening
@@ -217,9 +236,10 @@ Validation, opening with a sentence naming the Hugging Face repository
 (\texttt{xuejun72/HR-VILAGE-3K3M}) and its URL. (A formal DOI-based reference number for the
 repository, per E11 below, will be inserted at the same location once the Hugging Face DOI is
 minted.) The section then describes the repository's file and folder structure --- the top-level
-\texttt{study\_meta.csv} index, the five per-study data folders (\texttt{bulk\_gene\_expr/},
-\texttt{bulk\_gene\_expr\_raw/}, \texttt{single\_cell\_gene\_expr/}, \texttt{meta/},
-\texttt{antibody/}), and the supporting reference files (\texttt{Meta\_variable\_description.csv},
+\texttt{study\_meta.csv} index, the four per-study data folders (\texttt{bulk\_gene\_expr/},
+\texttt{single\_cell\_gene\_expr/}, \texttt{meta/}, \texttt{antibody/}; raw input files are not
+mirrored in the repository, per E9 below), and the supporting reference files
+(\texttt{Meta\_variable\_description.csv},
 \texttt{example\_dataset/}, \texttt{croissant.json}, \texttt{relation.png}) --- along with the
 column headings for \texttt{study\_meta.csv} and the \texttt{meta/} files. Consistent with this
 comment, no statistical summaries or additional methods detail were included in this section; the
