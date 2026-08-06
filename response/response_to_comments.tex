@@ -72,31 +72,21 @@ utilize in their own work. The goal is to share data for others to use, with the
 paper intended to provide transparency (how data were collected or validated) or practical help
 (how to find the data, what variables/column headings mean, etc.). Please do not add any
 additional analyses or results that are out of scope of a Data Descriptor.}
-\filledresponse{Understood, and agreed. We have revised the manuscript throughout to conform to
-the Data Descriptor format, and have removed content that read as general results, analyses, or
-conclusions about what the data show, retaining only content needed for transparency (Methods) or
-practical use (Data Records, Usage Notes) of the resource. Concretely: the dataset name has been
-removed from the title (E4); section numbering has been removed (E2); references now use a
-numbered format (E3); the Background and Summary section has been trimmed to motivation and prior
-art only, with the former ``Related Work'' section condensed into it and its results-style
-sentences removed (E5); a new Data Records section describing the repository's file/folder
-structure and column definitions has been added (E10); a Usage Notes section with practical
-data-loading examples has been added; and the ``Potential HR-VILAGE-3K3M Applications'' section
-has been removed in full (E13). The Technical Validation section is being revised along the same
-principle -- QC/validation content only, no proof-of-utility framing -- as detailed in our
-response to E12 below.}
+\filledresponse{Agreed. The manuscript has been revised throughout to conform to the Data
+Descriptor format, retaining only content needed for transparency (Methods) or practical use (Data
+Records, Usage Notes): title (E4), section numbering (E2), reference format (E3), Background and
+Summary trimmed with Related Work condensed in (E5), new Data Records and Usage Notes sections
+added (E10), and the ``Potential Applications'' section removed (E13). Technical Validation is
+being revised on the same principle (E12).}
 
 \item[E2.] \origcomment{Remove the section numbering.}
-\filledresponse{Done. Section numbering has been removed throughout the manuscript
-(\texttt{secnumdepth} set so no section, subsection, or subsubsection number prints). All
-headings in the main text and Supplementary Information (e.g., ``Background and Summary,''
-``Methods,'' ``Technical Validation'') now appear without numeric prefixes.}
+\filledresponse{Done. Section numbering has been removed throughout (\texttt{secnumdepth} set so
+no section/subsection number prints).}
 
 \item[E3.] \origcomment{Please use a numbered reference format}
 (\url{https://www.nature.com/sdata/publish/submission-guidelines#references}).
-\filledresponse{Done. References have been switched from the author-year format to a numbered
-format: in-text citations now appear as bracketed numbers in order of first citation (e.g.,
-[1], [2]), and the reference list is numbered accordingly in that same citation order.}
+\filledresponse{Done. References switched from author-year to a numbered format: in-text citations
+appear as bracketed numbers in citation order, and the reference list is numbered accordingly.}
 
 \item[E4.] \origcomment{Remove `HR-VILAGE-3K3M' from the manuscript title.}
 \filledresponse{Done. The dataset name has been removed from the title. The title now reads:
@@ -109,23 +99,13 @@ data shows. The section should be limited to brief descriptions of the motivatio
 and any relevant prior art. Data Descriptors do not analyse data or present findings, as the goal
 is for others to analyse the data for themselves. Please also condense the `related work' section
 into the Background and Summary section.}
-\filledresponse{Done. The Background and Summary section has been revised to contain only
-motivation and prior art. We removed the paragraph describing potential downstream applications
-(biomarker discovery, AI/ML model development, etc.), which read as a general conclusion about the
-data rather than motivation, and condensed the paragraph describing our curation effort into a
-brief summary retaining the key elements of the effort (identifier and gene-symbol harmonization,
-obtaining missing antibody titers from study authors, and quality control) while pointing to the
-Methods section for full procedural detail. The former ``Related Work'' section (its two
-subsections on existing transcriptomic resources and on batch-effect correction/harmonization
-methods) has been condensed into a single paragraph and merged into Background and Summary,
-retaining the citations that establish prior art and the gap this resource fills (including an
-additional cross-platform batch-correction reference, Sun et al., bioRxiv 2026,
-doi:10.1101/2024.09.30.615938), while removing
-the forward-looking, results-style sentence (``In this work, we benchmark multiple normalization
-strategies\ldots''). The remaining motivation and challenges paragraphs were also tightened for
-concision. The section is now approximately 580 words, within \textit{Scientific Data}'s 700-word
-limit for Background and Summary. A color-coded tracked-changes version of this edit is provided as
-\texttt{manuscript/template\_trackchanges.tex} alongside the clean revised manuscript.}
+\filledresponse{Done. Background and Summary now contains only motivation and prior art: removed
+the downstream-applications paragraph (read as a conclusion, not motivation); condensed the
+curation-effort description, pointing to Methods for procedural detail; and merged the former
+Related Work section in as a single paragraph, retaining prior-art citations (incl. an added
+cross-platform batch-correction reference, Sun et al., bioRxiv 2026, doi:10.1101/2024.09.30.615938)
+while removing the forward-looking, results-style sentence. Now approximately 580 words, within the
+700-word limit. Tracked-changes version: \texttt{manuscript/template\_trackchanges.tex}.}
 
 \item[E6.] \origcomment{Because at least some of your data looks to originate from third party
 datasets, either shared directly or used as input data to compute or train a new output, this
@@ -137,24 +117,16 @@ data DOIs, URLs, accession numbers, or specific search queries for third party p
 were not previously available for public download we need to know the manual process for how you
 obtained it, such as the name of the organization, contact details, and method of the
 collaboration, to allow someone else to obtain this via the same route.}
-\filledresponse{Gene expression data were obtained from three publicly available repositories:
-GEO, ImmPort, and ArrayExpress. The original collection was assembled via targeted search queries
-against these repositories, as detailed in Lan et al.~(2024); HR-VILAGE-3K3M extends this
-collection with additional studies identified using the same targeted-search protocol against
-records added since that collection. Metadata (outcome variables, subject characteristics) were
-obtained from GEO, ImmPort, and the supplementary files of the original publications.
-Subject-level antibody titers not already deposited in GEO/ImmPort or included in supplementary
-files were requested directly from the corresponding authors of the original publications via
-email. Accession numbers, repository names, and direct URLs for all 66 constituent studies are
-provided in Supplementary Table 1, allowing every record to be located directly.}
+\filledresponse{Gene expression data were obtained from GEO, ImmPort, and ArrayExpress via the
+targeted-search protocol in Lan et al.~(2024), extended to additional studies added since that
+collection. Metadata came from GEO, ImmPort, and publication supplementary files; antibody titers
+not otherwise available were requested from corresponding authors via email. Accession numbers,
+repositories, and URLs for all 66 studies are in Supplementary Table 1.}
 
 \textbf{Q2.} \origcomment{Please also confirm that information from Q1 is included in the Methods
 sections (e.g. state the line number).}
-\filledresponse{Yes. This information is stated in Methods, ``Data collection and curation''
-paragraph (\texttt{template.tex}, line 252), which describes the repositories and search protocol
-used to assemble the gene expression and metadata, the process for obtaining subject-level
-antibody titers, and now also references Supplementary Table 1 for the complete list of accession
-numbers and repository links for all 66 studies.}
+\filledresponse{Yes -- stated in Methods, ``Data collection and curation'' (\texttt{template.tex},
+line 252), which also references Supplementary Table 1 for the full accession/repository list.}
 
 \textbf{Q3.} \origcomment{Please tell us how you ensured you could re-use the data. For data from
 private sources, please confirm the data owner has provided permission for you to re-share these
@@ -164,41 +136,28 @@ confirm this. Or, if data are not within the scope of copyright at all, confirm 
 and/or your re-distribution is acceptable use. Finally, if you are a tertiary user of a secondary
 dataset that is itself sourced from elsewhere, we still request some basic validation is
 performed to ensure the primary source was open and legitimately re-distributed.}
-\filledresponse{For data obtained from GEO, ArrayExpress, and ImmPort, all three repositories
-confirm re-use rights for depositor-submitted data: NCBI states that it places no restrictions on
-the use or distribution of GEO data
-(\url{https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html}); EMBL-EBI's Terms of Use impose no
-additional restriction on ArrayExpress data beyond those set by the data owner
-(\url{https://www.ebi.ac.uk/about/terms-of-use}); and the ImmPort Data Use Agreement grants the
-unrestricted right to use and distribute ImmPort data, provided redistribution occurs under
-commensurate terms (\url{https://docs.immport.org/home/agreement}). \textbf{[TO DISCUSS: re-use
-confirmation for subject-level antibody titers obtained directly from study authors via
-email --- to be added once resolved.]}}
+\filledresponse{GEO, ArrayExpress, and ImmPort all permit re-use of depositor-submitted data
+without added restriction: NCBI's GEO disclaimer
+(\url{https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html}), EMBL-EBI's Terms of Use
+(\url{https://www.ebi.ac.uk/about/terms-of-use}), and the ImmPort Data Use Agreement
+(\url{https://docs.immport.org/home/agreement}), the latter requiring redistribution under
+commensurate terms. \textbf{[TO DISCUSS: re-use confirmation for antibody titers obtained directly
+from study authors via email.]}}
 
 \item[E7.] \origcomment{Is the data at Lan et al. (2024) peer-reviewed and published? If not,
 please incorporate all data into this work formally. Otherwise, please ensure it is transparent
 in the manuscript text (and response letter) what specific new data has been added to this work
 over that of previous publications. This will be assessed against our related publication policy}
 (\url{https://www.nature.com/sdata/policies/editorial-and-publishing-policies#complementary}).
-\filledresponse{Lan et al. is now peer-reviewed and published: F1000Research 2025, 14:493
-(\url{https://doi.org/10.12688/f1000research.162267.1}), first published 13 May 2025, status
-``version 1; peer review: 1 approved with reservations,'' distributed under a CC-BY license. The
-bibliography entry has been updated accordingly (from the ``awaiting peer review'' status cited in
-our earlier preprint to the current published, peer-reviewed status).
-
-Lan et al. is a dataset-discovery and curation paper: it systematically searched GEO, ImmPort, and
-ArrayExpress and compiled a list of 55 relevant datasets (18 inoculation, 37 vaccination;
-approximately 2,513 subjects total), but does not reprocess, harmonize, or host the underlying
-expression data itself --- it identifies and describes existing third-party datasets for others to
-download and analyze independently. HR-VILAGE-3K3M is a distinct data product built on top of
-that search process: it extends the collection to 66 studies and over 3,000 subjects (additional
-recent studies, broader ``mixed exposure'' scope beyond the inoculation/vaccination dichotomy, and
-curated subject-level antibody measurements obtained directly from study authors), and, critically,
-delivers a harmonized, quality-controlled, ready-to-use gene expression and metadata product (with
-standardized gene symbols, aligned sample identifiers, and standardized outcome definitions across
-studies) rather than a list of source datasets. This distinction, and the specific numeric
-comparison to Lan et al., is now stated explicitly in Methods, ``Data collection and curation''
-paragraph (\texttt{template.tex}, line 252).}
+\filledresponse{Lan et al. is now published and peer-reviewed: F1000Research 2025, 14:493
+(\url{https://doi.org/10.12688/f1000research.162267.1}), CC-BY. The bibliography entry has been
+updated accordingly. It is a dataset-discovery paper -- it searched GEO/ImmPort/ArrayExpress and
+compiled a list of 55 datasets (18 inoculation, 37 vaccination; \textasciitilde2,513 subjects), but
+does not reprocess, harmonize, or host the data. HR-VILAGE-3K3M extends this to 66 studies and
+3,000+ subjects and, critically, delivers a harmonized, quality-controlled, ready-to-use data
+product (standardized gene symbols, aligned identifiers, standardized outcomes, curated antibody
+data) rather than a list of sources. This distinction is now stated in Methods, ``Data collection
+and curation'' (\texttt{template.tex}, line 252).}
 
 \item[E8.] \origcomment{Please see our section for citing data -- given only 66 studies are
 utilized as input, please use the formats outlined at the following link to cite the input data
@@ -208,33 +167,23 @@ For GEO data: \textit{Lastname, A.B, Lastname, C.D. Lastname, E.F. GEO.}
 \url{https://identifiers.org/geo/GSEXXXXXX} \textit{(20XX)}. For ArrayExpress:
 \textit{Lastname, A.B, Lastname, C.D. Lastname, E.F. ArrayExpress.}
 \url{https://identifiers.org/arrayexpress:E-MTAB-XXXXX} \textit{(20XX)}.
-\filledresponse{Both citation requirements are now addressed for the 59 constituent microarray and
-RNA-seq studies (the remaining 7 scRNA-seq studies will be completed in the same way). (i)
-\emph{Paper citations:} rather than being left only in a supplementary list, the source
-publication(s) for each of these studies are now cited in-text at their point of use, in Methods,
-``Data collection and curation'' paragraph (\texttt{template.tex}, line 252), and included in the
-numbered reference list via \texttt{bibliography.bib}. (ii) \emph{Data citations:} formal,
-Nature-format data citations for each of the 66 constituent studies --- \textit{Lastname, A.B. et
-al. GEO.} \url{https://identifiers.org/geo/GSEXXXXXX} \textit{(20XX)} for GEO studies and the
-corresponding ArrayExpress/ImmPort forms otherwise --- are provided in the \texttt{data\_citation}
-column of Supplementary Table 1, generated from each study's own GEO/ArrayExpress/ImmPort
-contributor and submission metadata rather than invented placeholders.}
+\filledresponse{Both requirements are now met for the 59 non-scRNA-seq studies (the remaining 7
+scRNA-seq studies will follow the same way). \emph{Paper citations} are now cited in-text in
+Methods, ``Data collection and curation'' (\texttt{template.tex}, line 252), and in the numbered
+reference list. \emph{Data citations} in Nature's GEO/ArrayExpress/ImmPort format are provided in
+the \texttt{data\_citation} column of Supplementary Table 1, built from each study's own repository
+metadata.}
 
 \item[E9.] \origcomment{Please do not replicate the original input data files at Huggingface, only
 the data product that has been developed for this work and any new data that was not previously
 available should be present at the repository. Please simply cite the inputs so that readers will
 still go to the original resources to obtain these data.}
-\filledresponse{Done. The raw (unprocessed) input files are being removed from the Hugging Face
-repository; only the harmonized, quality-controlled data product (processed expression matrices,
-standardized metadata, and curated antibody measurements) is retained there, together with any
-newly created data (e.g., curated subject-level antibody titers obtained directly from study
-authors) that was not previously available elsewhere. Readers seeking the original raw files are
-directed to the source repository for each study rather than to a local copy: the
-\texttt{study\_meta.csv} index and Supplementary Table 1 cite each of the 66 constituent studies at
-its original GEO, ArrayExpress, or ImmPort accession, from which the raw files can be obtained
-directly. This is now stated in the Data Records section (\texttt{template.tex}, opening
-paragraph). \textbf{(Ruilie, please delete the raw data from the Hugging Face repository and add
-the study-level supplementary table to Hugging Face.)}}
+\filledresponse{Done. Raw input files are being removed from Hugging Face; only the harmonized data
+product and newly created data (e.g., antibody titers obtained from study authors) remain.
+Readers are directed to each study's original GEO/ArrayExpress/ImmPort accession (Supplementary
+Table 1) for raw files, per the Data Records section (\texttt{template.tex}, opening paragraph).
+\textbf{(Ruilie, please delete the raw data from Hugging Face and add the study-level supplementary
+table there.)}}
 
 \item[E10.] \origcomment{The Data Records section is missing. Please add a Data Records section
 and ensure it provides a description of the files being shared. This should start with an opening
@@ -244,20 +193,13 @@ not obvious or simple) and a description of column headings or variable names (w
 implicit). No other content, such as a statistical summary of the data, or further methods (place
 these in the methods section), or detailed analyses should be included. If you wish to include
 any summary statistics, please do so in a ``Data overview'' section.}
-\filledresponse{Done. A new Data Records section has been added between Methods and Technical
-Validation, opening with a sentence naming the Hugging Face repository
-(\texttt{xuejun72/HR-VILAGE-3K3M}), its URL, and its DOI-based data citation (see E11 below). The
-section then describes the repository's file and folder structure --- the top-level
-\texttt{study\_meta.csv} index, the four per-study data folders (\texttt{bulk\_gene\_expr/},
-\texttt{single\_cell\_gene\_expr/}, \texttt{meta/}, \texttt{antibody/}; raw input files are not
-mirrored in the repository, per E9 below), and the supporting reference files
-(\texttt{Meta\_variable\_description.csv},
-\texttt{example\_dataset/}, \texttt{croissant.json}, \texttt{relation.png}) --- along with the
-column headings for \texttt{study\_meta.csv} and the \texttt{meta/} files. Consistent with this
-comment, no statistical summaries or additional methods detail were included in this section; the
-existing statistical summary at the end of Methods (participant/study counts, platform and
-sample-type breakdowns) was left in place there rather than duplicated or moved, since it is
-methods-adjacent descriptive summary rather than a new result.}
+\filledresponse{Done. A new Data Records section (between Methods and Technical Validation) opens
+by naming the Hugging Face repository, its URL, and DOI-based citation (E11), then describes the
+file/folder structure (\texttt{study\_meta.csv} index; \texttt{bulk\_gene\_expr/},
+\texttt{single\_cell\_gene\_expr/}, \texttt{meta/}, \texttt{antibody/}; raw files not mirrored, per
+E9) and column headings. No statistics or methods detail were included, consistent with this
+comment; the existing statistical summary at the end of Methods was left in place there rather than
+duplicated.}
 
 \item[E11.] \origcomment{Please add a data citation for the dataset to the reference list using
 these instructions} (\url{https://www.nature.com/sdata/submission-guidelines#data_citations}
@@ -265,12 +207,10 @@ these instructions} (\url{https://www.nature.com/sdata/submission-guidelines#dat
 \origcomment{Please add the reference number to wherever the dataset is mentioned in the text --
 the main position should be the first part of the Data Record in a sentence describing where the
 data has been deposited.}
-\filledresponse{Done. Hugging Face has assigned the dataset a DOI (\url{https://doi.org/10.57967/hf/9892}),
-minted via the Hub's built-in DOI/DataCite integration. A corresponding data citation has been
-added to the reference list (\texttt{bibliography.bib}), and is referenced by number at the
-opening sentence of the Data Records section (\texttt{template.tex}, line 288), which now reads
-``...deposited in the Hugging Face Datasets repository \texttt{xuejun72/HR-VILAGE-3K3M}...(data
-citation: [reference number]).'' The DOI is also given in the Data Availability statement.}
+\filledresponse{Done. Hugging Face assigned the dataset a DOI (\url{https://doi.org/10.57967/hf/9892})
+via its built-in DOI/DataCite integration. A data citation has been added to the reference list and
+is referenced by number in the opening sentence of the Data Records section
+(\texttt{template.tex}, line 288); the DOI is also given in the Data Availability statement.}
 
 \item[E12.] \origcomment{Please check and revise the current Technical Validation section to make
 sure it only contains a summary of how the data were checked or validated. This could include
@@ -281,25 +221,17 @@ relevant for checking its quality or integrity. Proofs that data can be used for
 cases are not required -- because it is not a requirement that Data Descriptors prove utility for
 specific use cases -- if the data can be considered generally sound, so please consider general
 checks that will be helpful for most users.}
-\filledresponse{Agreed, and revised. We reviewed each Technical Validation subsection against this
-standard, benchmarking our approach against comparable multi-study transcriptomic Data Descriptors
-(e.g., the Immune Signatures Data Resource, \textit{Sci. Data} 2022), which similarly limit
-Technical Validation to checks on the data's technical soundness (QC metrics, batch-effect
-assessment, metadata-imputation accuracy) with no predictive-modeling or ``which-method-wins''
-benchmarking. Age and Sex Prediction is retained but reframed as a QC screen only (accuracy of
-imputed sex/age against the recorded metadata, used to flag potential sample mislabeling), removing
-the secondary framing of it as a cross-platform predictive-modeling benchmark. The subsection
-combining batch-effect correction with an antibody-responder prediction benchmark (RNN/LSTM/GRU/
-Transformer models, AUC/accuracy/F1 comparisons) is being cut down to its batch-effect visualization
-check only -- i.e., confirming that harmonization brings samples from different studies into
-alignment while preserving biological (responder-status) separation -- since the downstream
-predictive-modeling comparison is exactly the ``proof of utility for a specific use case'' this
-comment says is not required, and is also the subject of Reviewer 2's comment 5 regarding possible
-QN artifacts in the reported AUCs. Cell Type Annotation using paired bulk and single-cell data is
-retained, as it validates internal consistency between two modalities measured on the same
-subjects rather than demonstrating a downstream application. \textbf{[PENDING: the batch-effect-only
-reanalysis is being rerun to regenerate the corresponding figure/results before this is reflected
-in \texttt{template.tex}.]}}
+\filledresponse{Agreed, revised. Benchmarked against comparable resources (e.g., the Immune
+Signatures Data Resource, \textit{Sci. Data} 2022), which limit Technical Validation to QC/batch/
+imputation checks with no predictive-modeling benchmarks. Age and Sex Prediction is retained as a
+pure QC screen (mislabeling check), dropping its secondary predictive-benchmark framing. The
+subsection combining batch-effect correction with an antibody-responder prediction benchmark
+(RNN/LSTM/GRU/Transformer models) is being cut down to its batch-effect visualization check only,
+since the predictive-modeling comparison is exactly the ``proof of utility'' this comment says is
+not required (and is also the subject of Reviewer 2 comment 5, on possible QN artifacts in the
+reported AUCs). Cell Type Annotation is retained, as it checks internal consistency between two
+modalities rather than demonstrating a downstream application. \textbf{[PENDING: the
+batch-effect-only reanalysis is being rerun before this is reflected in \texttt{template.tex}.]}}
 
 \item[E13.] \origcomment{Remove the section ``5 Potential HR-VILAGE-3K3M Applications''.}
 \filledresponse{Done. The section (change point detection, gene expression imputation, causal
@@ -311,10 +243,9 @@ adjust the license to CC-BY, and set up a DOI for the repository. In addition, p
 metadata for the repository is completed -- generally this will involve setting up authors,
 title, etc. Please then also update the dataset card to note the citation for the dataset so that
 this is easier for readers to find.}
-\filledresponse{A DOI has been generated for the repository via Hugging Face's built-in
-DOI/DataCite integration (\url{https://doi.org/10.57967/hf/9892}; see E11). \textbf{(Ruilie,
-please modify the license to CC-BY, complete the repository metadata (full author list, title),
-and update the dataset card to display the DOI-based citation.)}}
+\filledresponse{A DOI has been generated for the repository (\url{https://doi.org/10.57967/hf/9892};
+see E11). \textbf{(Ruilie, please modify the license to CC-BY, complete the repository metadata
+(author list, title), and update the dataset card to display the DOI-based citation.)}}
 
 \end{commentlist}
 
