@@ -315,7 +315,18 @@ and inclusion/exclusion status) is provided in Supplementary Table 1.}
 Authors should explicitly show how many samples are coming from the older adults (Age
 distribution of the sample for longitudinal time points) -- for both scRNAseq, bulk RNAseq and
 microarray.}
-\responsespace
+\filledresponse{We computed subject-level age coverage and the $\geq$60y count for each platform.
+Microarray: 1,779 unique subjects, of whom 1,166 have an exact recorded age (423, 36\%, are
+$\geq$60y) and a further 134 have only a categorical age group (Young/Old/Frail-type label, without
+an exact age); 479 subjects have no age information at all. RNA-seq: 945 unique subjects, 784 with
+exact age (175, 22\%, are $\geq$60y). scRNA-seq: age is recorded for 3 of 7 studies at the donor
+level -- eskd\_covid19 (63 donors, 53 $\geq$60y, 84\%), E-MTAB-10026 (130 donors, 47 $\geq$60y,
+36\%), and GSE247917 (14 donors, age given as 5-year bins, $\sim$1 $\geq$60y) -- while GSE195673,
+GSE246937, challenge\_covid19, and GSE201534 (254 donors combined) have no age field in their
+deposited metadata. This confirms older adults are a minority but not absent from the resource, with
+markedly better representation in some scRNA-seq cohorts (e.g., the end-stage kidney disease cohort,
+84\% $\geq$60y) than in bulk data. This breakdown is being added to the descriptive-statistics
+paragraph at the end of Methods, alongside the existing participant/study/platform counts.}
 
 \item[R1-3.] \origcomment{What is sample ratio based on vaccine type (Flu IAV, LIAV, Fluzone HS,
 FluAd, Flublok, FLuarix, similarly COVID vaccines and others)?}
