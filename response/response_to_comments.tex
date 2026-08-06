@@ -281,7 +281,25 @@ relevant for checking its quality or integrity. Proofs that data can be used for
 cases are not required -- because it is not a requirement that Data Descriptors prove utility for
 specific use cases -- if the data can be considered generally sound, so please consider general
 checks that will be helpful for most users.}
-\responsespace
+\filledresponse{Agreed, and revised. We reviewed each Technical Validation subsection against this
+standard, benchmarking our approach against comparable multi-study transcriptomic Data Descriptors
+(e.g., the Immune Signatures Data Resource, \textit{Sci. Data} 2022), which similarly limit
+Technical Validation to checks on the data's technical soundness (QC metrics, batch-effect
+assessment, metadata-imputation accuracy) with no predictive-modeling or ``which-method-wins''
+benchmarking. Age and Sex Prediction is retained but reframed as a QC screen only (accuracy of
+imputed sex/age against the recorded metadata, used to flag potential sample mislabeling), removing
+the secondary framing of it as a cross-platform predictive-modeling benchmark. The subsection
+combining batch-effect correction with an antibody-responder prediction benchmark (RNN/LSTM/GRU/
+Transformer models, AUC/accuracy/F1 comparisons) is being cut down to its batch-effect visualization
+check only -- i.e., confirming that harmonization brings samples from different studies into
+alignment while preserving biological (responder-status) separation -- since the downstream
+predictive-modeling comparison is exactly the ``proof of utility for a specific use case'' this
+comment says is not required, and is also the subject of Reviewer 2's comment 5 regarding possible
+QN artifacts in the reported AUCs. Cell Type Annotation using paired bulk and single-cell data is
+retained, as it validates internal consistency between two modalities measured on the same
+subjects rather than demonstrating a downstream application. \textbf{[PENDING: the batch-effect-only
+reanalysis is being rerun to regenerate the corresponding figure/results before this is reflected
+in \texttt{template.tex}.]}}
 
 \item[E13.] \origcomment{Remove the section ``5 Potential HR-VILAGE-3K3M Applications''.}
 \filledresponse{Done. The section (change point detection, gene expression imputation, causal
