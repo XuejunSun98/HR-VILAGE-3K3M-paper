@@ -221,17 +221,22 @@ relevant for checking its quality or integrity. Proofs that data can be used for
 cases are not required -- because it is not a requirement that Data Descriptors prove utility for
 specific use cases -- if the data can be considered generally sound, so please consider general
 checks that will be helpful for most users.}
-\filledresponse{Agreed, revised. Benchmarked against comparable resources (e.g., the Immune
-Signatures Data Resource, \textit{Sci. Data} 2022), which limit Technical Validation to QC/batch/
-imputation checks with no predictive-modeling benchmarks. Age and Sex Prediction is retained as a
-pure QC screen (mislabeling check), dropping its secondary predictive-benchmark framing. The
-subsection combining batch-effect correction with an antibody-responder prediction benchmark
-(RNN/LSTM/GRU/Transformer models) is being cut down to its batch-effect visualization check only,
-since the predictive-modeling comparison is exactly the ``proof of utility'' this comment says is
-not required (and is also the subject of Reviewer 2 comment 5, on possible QN artifacts in the
+\filledresponse{Done. Benchmarked against comparable resources (e.g., the Immune Signatures Data
+Resource, \textit{Sci. Data} 2022), which limit Technical Validation to QC/batch/imputation checks
+with no predictive-modeling benchmarks. ``Age and Sex Prediction'' is now ``Age and Sex Metadata
+Consistency Check'' (\texttt{template.tex}, line 305): reframed as a pure QC screen for sample
+mislabeling, dropping the secondary predictive-benchmark framing. The subsection combining
+batch-effect correction with an antibody-responder prediction benchmark (RNN/LSTM/GRU/Transformer
+models) is replaced by ``Batch-Effect Correction Assessment'' (line 346): QN/ComBat/Regression are
+compared via t-SNE (colored by study, responder status, and timepoint) and a quantitative summary
+(\% variance explained by study identity before/after correction), with the predictive-modeling
+benchmark removed entirely, since it is exactly the ``proof of utility'' this comment says is not
+required (and was also the subject of Reviewer 2 comment 5, on possible QN artifacts in the
 reported AUCs). Cell Type Annotation is retained, as it checks internal consistency between two
-modalities rather than demonstrating a downstream application. \textbf{[PENDING: the
-batch-effect-only reanalysis is being rerun before this is reflected in \texttt{template.tex}.]}}
+modalities rather than demonstrating a downstream application. Note: this reanalysis surfaced that
+the \texttt{timepoint\_group} metadata field is empty for the studies in this subset (raw
+\texttt{timepoint} is fully populated); we used derived timepoint bins for the figure and flag this
+as a data-completeness item (see also our response to R2-m5).}
 
 \item[E13.] \origcomment{Remove the section ``5 Potential HR-VILAGE-3K3M Applications''.}
 \filledresponse{Done. The section (change point detection, gene expression imputation, causal

@@ -300,12 +300,12 @@ The complete HR-VILAGE-3K3M dataset described in this Data Descriptor is deposit
 \noindent\textbf{Supporting files.} \texttt{Meta\_variable\_description.csv} is a data dictionary defining every column name used across the \texttt{meta/} files. \texttt{example\_dataset/} contains a worked example (metadata, gene expression, and antibody files for study GSE194378) illustrating how the three file types are linked by sample identifier. \texttt{croissant.json} provides a machine-readable Croissant-format description of the repository for programmatic dataset loading. \texttt{relation.png} documents studies that share subjects or originate from the same source series, for users combining data across studies.
 
 \section{Technical Validation}
-In this section, we illustrate the utility of HR-VILAGE-3K3M through three representative analyses: outcome prediction using longitudinal bulk data and cell type annotation using paired bulk and single-cell data. 
+In this section, we report quality-control and validation checks on HR-VILAGE-3K3M: a metadata-consistency screen for sex and age, an assessment of batch-effect correction across studies and platforms, and a cross-modality consistency check between paired bulk and single-cell data.
 
-\subsection{Age and Sex Prediction Using Longitudinal Bulk Data}
+\subsection{Age and Sex Metadata Consistency Check}
 
 
-We evaluated how well baseline whole-blood transcriptomes capture two fundamental biological traits—sex and age—using microarray and RNA-seq datasets from HR-VILAGE-3K3M. Sex prediction used a literature-curated set of Y-chromosome marker genes \citep{ellis2018sex}, while age prediction leveraged genome-wide expression features within a cross-validation framework. These analyses served two purposes: (i) providing a robust quality-control (QC) screen for detecting potential sample mislabeling, and (ii) establishing a quantitative benchmark for predictive modeling across transcriptomic platforms.
+As a quality-control (QC) screen for potential sample mislabeling, we evaluated how well baseline whole-blood transcriptomes predict two recorded metadata fields, sex and age, using microarray and RNA-seq datasets from HR-VILAGE-3K3M. Sex prediction used a literature-curated set of Y-chromosome marker genes \citep{ellis2018sex}, while age prediction leveraged genome-wide expression features within a cross-validation framework.
 
 The analyses for sex prediction included 1{,}096 microarray and 646 RNA-seq baseline samples. Expression matrices were first quantile-normalized (QN) across all genes \citep{bolstad2003comparison}, and RNA-seq data were further transformed using $\log_2(x+1)$ to stabilize variance \citep{law2014voom}. Y-chromosome marker genes were then selected from the normalized data, retaining only those expressed in all samples to ensure consistent cross-platform coverage. For each sample, a composite Y-score was computed as the sum of normalized expression values across all selected Y-chromosome marker genes. The optimal threshold separating males and females was determined using Youden’s $J$ statistic\citep{youden1950index}, maximizing the difference between true-positive and false-positive rates (TPR – FPR) on the ROC curve. Samples with Y-scores above this threshold were classified as male, while those below were classified as female.
 
@@ -341,31 +341,38 @@ RNA-seq & Ridge Regression & 0.674 (0.575, 0.773) & 7.56 (6.90, 8.22) \\
 \label{tab:age_prediction}
 \end{table}
 
-Across both data modalities, baseline whole-blood transcriptomes captured strong and biologically consistent signals for both sex and age. The Y-chromosome marker--based classifiers achieved near-perfect discrimination between males and females, with ROC-AUC values of 0.989 for the microarray and 0.991 for the RNA-seq datasets (Table 1). For age prediction, Ridge regression models achieved \(R^2 = 0.829\) (MAE = 7.90 years) for microarray and \(R^2 = 0.708\) (MAE = 7.26 years) for RNA-seq, while the FCNN further improved performance to \(R^2 = 0.859\) and \(R^2 = 0.728\), respectively (Table 2). These results demonstrate that baseline transcriptomic profiles encode substantial age-related variation, with deep neural architectures capturing modest nonlinear gains. Microarray data yielded slightly higher predictive stability than RNA-seq, likely reflecting differences in cohort composition and platform-specific variability rather than intrinsic disparities in biological signal.
+The Y-chromosome marker--based classifiers achieved near-perfect discrimination between recorded male and female samples, with ROC-AUC values of 0.989 for microarray and 0.991 for RNA-seq (Table 1). For age prediction, models achieved \(R^2\) between 0.674 and 0.859 across modalities and model types (Table 2). The high concordance between expression-based predictions and recorded metadata across both platforms indicates no widespread sex- or age-metadata mislabeling in HR-VILAGE-3K3M; samples with low-confidence predictions (Y-scores near the classification threshold, or large age-prediction residuals) can be used to flag individual candidates for further QC review.
 
-\subsection{Outcome Prediction Using Longitudinal Bulk Data}
+\subsection{Batch-Effect Correction Assessment}
 
-To demonstrate the utility of the HR-VILAGE-3K3M dataset for evaluating batch effect correction and predictive modeling, we conducted a comprehensive benchmark analysis. We selected 19 influenza vaccine studies comprising 1,210 participants with balanced numbers of high and low antibody responders. Gene expression profiles for these participants spanned 1 to 19 time points, and we retained only samples collected during the early immune response window (prior to day 28 before antibody measurement). To stabilize variance, RNA-seq data were log-transformed using $\log_2(x + 1)$, and genes in the bottom 25\% of both mean expression and variance were removed to reduce technical noise.
+To assess whether harmonization brings samples from different studies and platforms into alignment while preserving biological signal, we evaluated batch-effect correction on a subset of HR-VILAGE-3K3M comprising 22 influenza vaccine studies with recorded antibody-responder status (both microarray and RNA-seq; studies with fewer than 5 subjects in the minority responder class were excluded), totaling 3,288 samples (2,711 microarray, 577 RNA-seq) at early post-vaccination time points (prior to day 28). RNA-seq data were log-transformed using $\log_2(x+1)$, and genes in the bottom 25\% of both mean expression and variance were removed to reduce technical noise.
 
-We applied three batch effect correction methods---QN~\citep{bolstad2003comparison}, ComBat~\citep{johnson2007adjusting}, and Regression from \texttt{scanpy~\citep{wolf2018scanpy}}---using study identifiers as the batch variable. To assess the effectiveness of these corrections, we visualized batch and outcome separation using t-SNE projections of the normalized gene expression data, highlighting clustering by both study and responder status.
+We applied three correction methods---QN~\citep{bolstad2003comparison}, ComBat~\citep{johnson2007adjusting}, and Regression from \texttt{scanpy}~\citep{wolf2018scanpy}, benchmarked in~\citep{Sun2026CrossPlatform}---using study identifiers as the batch variable, and visualized the corrected data with t-SNE, colored by study, responder status, and timepoint (Figure~\ref{fig:batcheffect}). As a quantitative summary, we computed the fraction of variance across the top 10 principal components explained by study identity, before and after each correction.
 
-For predictive modeling, we first applied a PCA + generalized estimating equations (GEE) framework with an exchangeable working correlation structure to account for within-subject dependence. Gene expression data were projected onto the top 200 principal components (PCs) from the training folds and combined with a centered and scaled time covariate as well as categorical vaccine and tissue predictors. These features were used in a binomial GEE with robust variance estimators, and subject-level outcomes were summarized by majority vote across sample-level predictions. The second strategy used deep learning models, including Recurrent Neural Network (RNN)~\citep{elman1990finding,rumelhart1986learning}, Long Short-Term Memory (LSTM)~\citep{hochreiter1997long}, Gated Recurrent Unit (GRU)~\citep{cho2014learning}, and a Transformer~\citep{vaswani2017attention}. Time-ordered gene expression sequences were constructed for each subject, padded to a fixed length, and concatenated with numeric timepoints. In the Transformer, temporal information was encoded using Fourier-based positional encodings and two Pre-Norm encoder layers with multi-head attention, feed-forward blocks, and residual connections. Encoded representations were aggregated via masked mean pooling and passed through fully connected layers for binary classification. All models were trained using binary cross-entropy loss with the AdamW optimizer~\citep{kingma2014adam} and evaluated via stratified 5-fold cross-validation repeated across six random seeds.
-
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{Example_experiment2.png}
-  \caption{Evaluation of Batch Effect Correction and Predictive Modeling on the HV-RIGEL-3K Dataset. (a) Batch Effect Correction Visualization. t-SNE plots display sample clustering before and after batch effect correction using QN, Regression, and ComBat. Points are colored by responder status (left panels) or study ID (right panels) to assess preservation of biological signal and reduction of batch-specific variation. (b) Antibody Responder Prediction Performance. Bar plots show mean accuracy, AUC, and F1 score across five modeling approaches—PCA-GEE, RNN, LSTM, GRU, and Transformer—under three batch correction methods (QN, Regression, ComBat). Results are averaged across stratified 5-fold cross-validation and six random seeds. }
-  \label{fig:prediction}
+  \includegraphics[width=1\textwidth]{BatchEffect_Correction.png}
+  \caption{Assessment of batch-effect correction across 22 influenza vaccine studies (3,288 samples; microarray and RNA-seq). Rows show t-SNE projections of the expression data after Quantile Normalization, ComBat, and Regression; columns show the same projection colored by (a) study identity, (b) antibody-responder status, and (c) timepoint (binned from the recorded day of sample collection). }
+  \label{fig:batcheffect}
 \end{figure}
 
-\textbf{Batch effect correction.} The QN-corrected data show clear separation by study (indicating preserved batch effects) but also better within-study separation by outcome. Regression moderately mixes study batches while retaining some biological structure. ComBat achieves the strongest batch mixing, as indicated by overlapping study clusters, but this comes at the cost of reduced separation between responder groups (Figure \ref{fig:prediction}a).
+\begin{table}[ht]
+\centering
+\caption{Fraction of variance (top 10 principal components, variance-weighted) explained by study identity, before and after batch-effect correction.}
+\begin{tabular}{lc}
+\hline
+\textbf{Method} & \textbf{Variance explained by study} \\
+\hline
+Uncorrected & 0.818 \\
+QN & 0.845 \\
+ComBat & 0.0005 \\
+Regression & $<$0.0001 \\
+\hline
+\end{tabular}
+\label{tab:batch_variance}
+\end{table}
 
- 
-\textbf{Antibody Responder Prediction.} 
-With quantile normalization (QN), the Transformer achieved the best overall performance, reaching the highest AUC (0.737) and accuracy (0.663), underscoring its ability to capture temporal dependencies in longitudinal gene expression data. Recurrent models (RNN, LSTM, GRU) showed moderate performance, with AUCs ranging from 0.602 to 0.702, while ComBat and Regression corrections generally produced lower scores. Overall, QN correction consistently enhanced predictive performance. These findings highlight the HR-VILAGE-3K3M dataset’s value as a benchmark for evaluating models of immune response dynamics (Figure~\ref{fig:prediction}b).
-
-
-
+QN alone does not remove study-driven separation: study clusters remain visually distinct after QN (Figure~\ref{fig:batcheffect}, top row), and the fraction of variance explained by study identity is essentially unchanged from the uncorrected data (0.818 vs.\ 0.845; Table~\ref{tab:batch_variance}), consistent with QN acting on the marginal distribution of each sample rather than on study-level batch structure. ComBat and Regression both bring samples from different studies into close alignment (Figure~\ref{fig:batcheffect}, middle and bottom rows), reducing the variance explained by study identity to near zero (Table~\ref{tab:batch_variance}), while responder status and timepoint remain distributed similarly across the corrected space rather than collapsing into separate corrected-away clusters, indicating that batch correction does not trivially remove biological variation along with study-driven variation.
 
 
 \subsection{Cell Type Annotation Using Paired Bulk and Single-Cell Data}
