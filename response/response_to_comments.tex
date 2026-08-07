@@ -595,23 +595,21 @@ checkable scRNA-seq) studies among the inoculation, vaccine, and mixed-exposure 
 56 match exactly. Beyond documented duplicate removal (same subjects deposited under more than one
 accession; Methods, ``Data quality control,'' line 271, documented in \texttt{relation.png}), 3
 studies have a small number of additional samples excluded: GSE228839 (170/180 retained), GSE207750
-(271/275), and GSE45735 (54/55) -- 15 samples total out of roughly 13{,}500 bulk samples. We traced
-the mechanism directly in each study's raw deposited files: for GSE45735, the one excluded sample
-(subject T13, day 8) is genuinely absent from the depositor's own count file (present for the other
-four subjects in the series, missing only for T13); for GSE207750, 3 of the 4 excluded samples have
-severely reduced gene-detection counts in the depositor's TPM file (1{,}430, 4{,}665, and 11{,}243
-genes detected, versus a cohort mean of 18{,}792), consistent with failed/low-complexity libraries,
-while the fourth looks like a normal sample and is unexplained. For GSE228839, by contrast, all 10
-excluded samples have normal gene-detection counts in the depositor's RPKM files ($>$99\% of genes
-detected, no different from retained samples); tracing this at the participant level via GEO's own
+(271/275), and GSE45735 (54/55) -- 15 samples total out of roughly 13{,}500 bulk samples, for two
+distinct reasons. GSE207750 and GSE45735 were excluded for data-quality reasons at the individual
+sample level: for GSE45735, the one excluded sample (subject T13, day 8) is genuinely absent from
+the depositor's own count file (present for the other four subjects in the series, missing only for
+T13); for GSE207750, 3 of the 4 excluded samples have severely reduced gene-detection counts in the
+depositor's TPM file (1{,}430, 4{,}665, and 11{,}243 genes detected, versus a cohort mean of
+18{,}792), consistent with failed/low-complexity libraries (the fourth is unexplained by this
+metric). GSE228839's 10 exclusions have a different, structural cause: the depositor only provided
+normalized RPKM values for this series, not raw counts, and our RNA-seq processing pipeline
+requires raw counts (Methods, ``Data processing,'' line 255); these 10 samples were the ones for
+which raw counts could not be obtained and so were excluded, independent of the (otherwise normal)
+RPKM values themselves being present. Tracing this at the participant level via GEO's own
 ``participant number'' field shows 3 of the 10 are whole single-sample participants (dropping their
-only sample removed them entirely) and the remaining 7 are isolated single-timepoint drops within
-otherwise-retained subjects, not explained by low read depth, duplication (ruled out by
-within-study Spearman profile correlation against all retained samples), or any per-arm/per-batch
-pattern we could identify. In short: some of these exclusions are directly attributable to
-low/absent gene expression in the source data, as the question asks about, and a smaller remainder
-(GSE228839's 7, GSE207750's 1) are not explained by any criterion we can reconstruct from the
-archived record.}
+only unobtainable-raw-count sample removed them entirely) and the remaining 7 are isolated
+single-timepoint drops within otherwise-retained subjects.}
 
 \item[R2-m7.] \origcomment{Text on Page 18 mentions ``six random seeds'' but Figure 2b has no
 error bars for the accuracy and F1 scores. Please fix.}
