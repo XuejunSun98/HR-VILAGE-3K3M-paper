@@ -234,9 +234,10 @@ benchmark removed entirely, since it is exactly the ``proof of utility'' this co
 required (and was also the subject of Reviewer 2 comment 5, on possible QN artifacts in the
 reported AUCs). Cell Type Annotation is retained, as it checks internal consistency between two
 modalities rather than demonstrating a downstream application. Note: this reanalysis surfaced that
-the \texttt{timepoint\_group} metadata field is empty for the studies in this subset (raw
-\texttt{timepoint} is fully populated); we used derived timepoint bins for the figure and flag this
-as a data-completeness item (see also our response to R2-m5).}
+the \texttt{timepoint\_group} metadata field is empty for the studies in this subset; this is
+expected, as those studies have exact numeric \texttt{timepoint} values and so do not need the
+\texttt{timepoint\_group} fallback (see our response to R2-m5). We used derived \texttt{timepoint}
+bins for the figure accordingly.}
 
 \item[E13.] \origcomment{Remove the section ``5 Potential HR-VILAGE-3K3M Applications''.}
 \filledresponse{Done. The section (change point detection, gene expression imputation, causal
@@ -570,15 +571,19 @@ We have re-checked every figure and table caption in the revised manuscript and 
 
 \item[R2-m5.] \origcomment{Day 0 is just before vaccination, day -1, -7 are days prior to
 vaccination (or is it pre1 and pre7), etc. -- are these terms standardized across studies?}
-\filledresponse{No -- terms like ``pre1''/``pre7''/``day $-1$'' are not a fixed, standardized
-vocabulary. The numeric \texttt{timepoint} field (day relative to vaccination/inoculation) is the
-harmonized field and is populated for 12{,}755/13{,}515 (94\%) bulk samples across all 66 studies.
-A separate \texttt{timepoint\_group} field carries each study's own original visit label (e.g.,
-``Pre-boost,'' ``D0,'' ``V1D7''), but it is populated for only 5 of 66 studies (835/13{,}515 rows)
-and preserves per-study naming rather than a standardized set of terms. We have clarified this
-distinction in the \texttt{meta/} column description in Data Records (line 296) and flag it as a
-data-completeness item; \texttt{timepoint}, not \texttt{timepoint\_group}, is the field we
-recommend for cross-study chronological alignment (see also our response to E12).}
+\filledresponse{For bulk data, yes: the numeric \texttt{timepoint} field (day relative to
+vaccination/inoculation, so day 0 = day of vaccination/inoculation, day $-7$ = 7 days before, etc.)
+is standardized across all bulk studies on a common day scale, and is populated for 12{,}512/13{,}515
+(93\%) bulk samples. It is missing for only 5 of 66 studies, in each case because the original
+source study did not report exact day-level timing: 3 studies (GSE199750, GSE228839, GSE276544;
+735 samples) reported only visit codes (e.g., ``V1D7,'' ``D0,'' ``CT+7''), which we preserve as-is
+in \texttt{timepoint\_group} as a fallback; 2 studies (GSE68310, GSE194378; 268 samples) reported
+no day-level timing at all (season-level sampling, e.g. ``Spring,'' or unreported), so neither
+field is populated for those rows. (One further study, GSE265975, has both fields populated
+simultaneously -- \texttt{timepoint\_group} there is a supplementary human-readable label, e.g.\
+``Pre-boost,'' alongside the exact numeric day, not a substitute for it.) Single-cell metadata is
+handled separately and was not part of this accounting. We have clarified this in the
+\texttt{meta/} column description in Data Records (line 296).}
 
 \item[R2-m6.] \origcomment{Of the samples drawn from the 66 original studies, were all available
 samples retained in the final harmonized dataset, or were some samples excluded based on
