@@ -588,14 +588,25 @@ handled separately and was not part of this accounting. We have clarified this i
 \item[R2-m6.] \origcomment{Of the samples drawn from the 66 original studies, were all available
 samples retained in the final harmonized dataset, or were some samples excluded based on
 quality-control criteria (e.g., low read depth, RIN score, etc.)? Please clarify.}
-\filledresponse{All samples available from each constituent study's processed/deposited files were
-retained, except identified duplicates. Duplicate samples -- arising when the same subjects' data
-were deposited under more than one GEO accession (reused across publications or resubmitted) --
-were identified and removed, confirmed via Spearman correlation of expression profiles (Methods,
-``Data quality control,'' line 271); these relationships are documented in \texttt{relation.png}
-for transparency. We did not apply additional sample-level exclusion criteria (e.g., RIN score or
-read-depth thresholds) beyond what each original study's authors had already applied before
-deposition; HR-VILAGE-3K3M inherits each study's own QC-passed sample set.}
+\filledresponse{Nearly all samples are retained as-is. We systematically compared our per-study
+sample counts against each source repository's own record (GEO \texttt{Series\_sample\_id}
+counts, ArrayExpress/BioStudies assay counts) for all 56 GEO/ArrayExpress-hosted bulk (and
+checkable scRNA-seq) studies among the inoculation, vaccine, and mixed-exposure categories: 53 of
+56 match exactly. Beyond documented duplicate removal (same subjects deposited under more than one
+accession; Methods, ``Data quality control,'' line 271, documented in \texttt{relation.png}), 3
+studies have a small number of additional samples excluded during processing that we cannot fully
+reconstruct the original per-sample reason for: GSE228839 (170/180 retained), GSE207750
+(271/275), and GSE45735 (54/55) -- 15 samples total out of roughly 13{,}500 bulk samples. For
+GSE228839 specifically, we traced this at the participant level using GEO's own ``participant
+number'' field: of 100 participants in GEO, 97 are retained; 3 participants are missing entirely
+(each contributed only a single GEO sample, so dropping that sample removed the participant), and
+the remaining 7 excluded samples belong to participants who are otherwise retained via their other
+timepoint(s) -- i.e., isolated single-sample drops, not duplicate removal (a Spearman
+profile-correlation check against all other samples in the same study found no evidence these are
+near-duplicates of retained samples) and not a systematic per-arm or per-batch pattern. This is
+consistent with an individual sample-level QC step (e.g.\ failing an internal expression-quality
+check) applied during original processing, though we can no longer recover the exact criterion
+used for each of these 15 samples specifically.}
 
 \item[R2-m7.] \origcomment{Text on Page 18 mentions ``six random seeds'' but Figure 2b has no
 error bars for the accuracy and F1 scores. Please fix.}
