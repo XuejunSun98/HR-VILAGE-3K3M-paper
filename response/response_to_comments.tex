@@ -538,50 +538,106 @@ researchers to use this resource for reanalyzing existing viral transcriptomic d
 
 \item[R2-m1.] \origcomment{Please cite references for standard scRNAseq processing methods/tools,
 and expand certain symbols like log1p (transformation).}
-\responsespace
+\filledresponse{Done. The scRNA-seq preprocessing paragraph (\texttt{template.tex}, line 258) now
+cites \texttt{scanpy} (Wolf et al., \textit{Genome Biology} 2018) (already cited elsewhere for
+\texttt{AnnData}, Virshup et al. 2024, and UMAP, McInnes et al. 2018), and \texttt{log1p} is expanded as
+$\log(1+x)$. \textbf{(Yiran, please confirm whether any further scRNA-seq-specific tool
+citations should be added, e.g. for per-study processing done before conversion to AnnData.)}}
 
 \item[R2-m2.] \origcomment{Why repeat the description of dataset preprocessing, transformation,
 and related steps, given originally in Methods, again one more time in Results (e.g., Results
 section text on sex prediction talks about QN and log1p, etc.)? Could you not say in the Results
 section that these tasks use analysis-ready data, preprocessed/normalized as explained in the
 Methods section?}
-\responsespace
+\filledresponse{Done. The Age and Sex Metadata Consistency Check (line 309) no longer restates the
+QN/$\log_2(x+1)$ preprocessing already described in Methods (``Data processing,'' line 255); both
+paragraphs now simply reference the analysis-ready data and describe only what is specific to
+this check (Y-chromosome marker selection, HVG selection, thresholding).}
 
 \item[R2-m3.] \origcomment{This sentence seems incomplete: ``with AUCs ranging from 0.602 to
 0.702, while ComBat and Regression corrections generally produced lower scores.'' Please fix it.}
-\responsespace
+\filledresponse{Resolved by removal. This sentence belonged to the ``Outcome Prediction''
+subsection (RNN/LSTM/GRU/Transformer responder-prediction benchmark), which has been removed from
+Technical Validation per our response to Editor comment E12 -- predictive-modeling benchmarks are
+exactly the ``proof of utility'' content the editor asked us not to include. The sentence no
+longer appears anywhere in the manuscript.}
 
 \item[R2-m4.] \origcomment{Figure 2 caption says ``HV-RIGEL-3K'' Dataset instead of
 HR-VILAGE-3K3M. Please fix it.}
-\responsespace
+\filledresponse{Resolved. The affected caption belonged to the same removed subsection.
+We have re-checked every figure and table caption in the revised manuscript and confirmed
+``HR-VILAGE-3K3M'' is used correctly throughout, with no remaining instances of this typo.}
 
 \item[R2-m5.] \origcomment{Day 0 is just before vaccination, day -1, -7 are days prior to
 vaccination (or is it pre1 and pre7), etc. -- are these terms standardized across studies?}
-\responsespace
+\filledresponse{No -- terms like ``pre1''/``pre7''/``day $-1$'' are not a fixed, standardized
+vocabulary. The numeric \texttt{timepoint} field (day relative to vaccination/inoculation) is the
+harmonized field and is populated for 12{,}755/13{,}515 (94\%) bulk samples across all 66 studies.
+A separate \texttt{timepoint\_group} field carries each study's own original visit label (e.g.,
+``Pre-boost,'' ``D0,'' ``V1D7''), but it is populated for only 5 of 66 studies (835/13{,}515 rows)
+and preserves per-study naming rather than a standardized set of terms. We have clarified this
+distinction in the \texttt{meta/} column description in Data Records (line 296) and flag it as a
+data-completeness item; \texttt{timepoint}, not \texttt{timepoint\_group}, is the field we
+recommend for cross-study chronological alignment (see also our response to E12).}
 
 \item[R2-m6.] \origcomment{Of the samples drawn from the 66 original studies, were all available
 samples retained in the final harmonized dataset, or were some samples excluded based on
 quality-control criteria (e.g., low read depth, RIN score, etc.)? Please clarify.}
-\responsespace
+\filledresponse{All samples available from each constituent study's processed/deposited files were
+retained, except identified duplicates. Duplicate samples -- arising when the same subjects' data
+were deposited under more than one GEO accession (reused across publications or resubmitted) --
+were identified and removed, confirmed via Spearman correlation of expression profiles (Methods,
+``Data quality control,'' line 271); these relationships are documented in \texttt{relation.png}
+for transparency. We did not apply additional sample-level exclusion criteria (e.g., RIN score or
+read-depth thresholds) beyond what each original study's authors had already applied before
+deposition; HR-VILAGE-3K3M inherits each study's own QC-passed sample set.}
 
 \item[R2-m7.] \origcomment{Text on Page 18 mentions ``six random seeds'' but Figure 2b has no
 error bars for the accuracy and F1 scores. Please fix.}
-\responsespace
+\filledresponse{Resolved by removal. This text described the RNN/LSTM/GRU/Transformer
+responder-prediction benchmark, removed from Technical Validation (see E12, R2-m3). The
+corresponding Methods detail (formerly ``Antibody Responder Prediction Details'' in Supplementary
+Information) has also been trimmed to retain only the methodology still used by the Batch-Effect
+Correction Assessment (data/sample filtering, normalization, t-SNE), and is now titled
+``Batch-Effect Correction Assessment Details.''}
 
 \item[R2-m8.] \origcomment{Foundation models may need the scale of HIPC ImmPort (300+ studies).
 With few studies in HR-VILAGE, can foundation models be really trained?}
-\responsespace
+\filledresponse{Agreed that 66 studies alone is smaller than ImmPort's full scale. HR-VILAGE-3K3M
+is not intended to train a foundation model in isolation; its contribution is the harmonization
+itself (consistent gene symbols, outcome definitions, and metadata schema across GEO, ImmPort, and
+ArrayExpress sources), which makes it straightforward to combine with other repositories,
+including ImmPort directly, to reach the scale foundation-model training requires. We see this as
+a resource meant to be pooled with others rather than used standalone for that purpose.}
 
 \item[R2-m9.] \origcomment{In Section 4.3, what is the overlap of the number of subjects on Day 1
 and Day 7 from the datasets GSE201533 and GSE201534? As per metadata GSE201534 has only 6
 subjects.}
-\responsespace
+\filledresponse{We checked this directly against the underlying data. GSE201534 (scRNA-seq) has
+exactly 6 subjects (2 donors in each of 3 vaccine-regimen arms: BNT/BNT, ChAd/BNT, ChAd/ChAd),
+each with a paired Day~1 and Day~7 PBMC sample (12 samples total) -- matching the reviewer's
+count. GSE201533 (bulk RNA-seq) is a larger, 43-subject cohort from the same parent study, sampled
+at baseline (D0), a variable early post-dose day (D1--D4, not literal Day~1 for most subjects),
+and D7. The scRNA-seq subset is therefore not the same subjects as any specific slice of the bulk
+cohort, and GEO's public sample metadata for the two series provides no subject-ID crosswalk
+between them (scRNA-seq donors are coded by regimen and donor number, e.g. ``BNT\_BNT\_1''; bulk
+subjects use cohort-wide numeric IDs). We have corrected the manuscript text (line 400) to
+describe this accurately as a cross-modality trend-consistency check between the two datasets
+(stating both cohort sizes explicitly) rather than implying a paired within-subject comparison.}
 
 \item[R2-m10.] \origcomment{Instead of running QC to flag problematic samples, can you also fix
 sample mislabeling or other such issues using approaches such as MODMatcher (PLOS Comput Biol,
 Yoo et al. 2014)? If not fixing these issues, can some diagnostics at least be done to see if
 problematic samples are scattered across studies, or coming exclusively from one or two studies?}
-\responsespace
+\filledresponse{We do not attempt automated mislabel correction (e.g., MODMatcher) dataset-wide;
+we consider this substantial additional re-analysis out of scope for a Data Descriptor (see E1).
+We do already run one related diagnostic dataset-wide: duplicate/reused-sample detection via
+Spearman correlation of expression profiles across studies (Methods, line 271), with results
+documented in \texttt{relation.png} so users can see which samples/studies share subjects. For the
+Age and Sex Metadata Consistency Check specifically, low-confidence samples (borderline Y-scores,
+large age residuals) are flagged rather than corrected, and remain identifiable by
+\texttt{study\_ID} in the provided metadata, so whether flagged samples cluster within particular
+studies can be checked directly from the released data.}
 
 \item[R2-m11.] \origcomment{Methodological details missing: (i) Could the authors specify the
 reference genome build (e.g., hg38) and the corresponding Gencode annotation version used for
@@ -594,7 +650,21 @@ F1 score or AUC to all plots, so that a baseline is there to interpret other met
 samples within each study). Optionally, SHAP or other analysis to see what features are
 contributing to prediction accuracy could also help distinguish biological signals vs. other
 artifacts.}
-\responsespace
+\filledresponse{(i) \textbf{(Please confirm the reference genome build and Gencode annotation
+version used when raw FASTQ files required alignment/quantification, for addition to Methods,
+line 256.)} (ii) Dataset inclusion criteria and search queries are as detailed in
+Lan et al. (F1000Research 2025, 14:493) for the 39 studies shared with or derived via SuperSeries from that
+collection (see R1-1); the remaining 19 studies were added via routine GEO/ImmPort/ArrayExpress
+monitoring for new viral-vaccination/inoculation transcriptomic studies (4 predating but missed by
+Lan et al.'s original search, 7 published afterward, and 8 in the newly added mixed-exposure and
+scRNA-seq categories that were outside Lan et al.'s original scope; full accounting in
+Supplementary Table 1). We have re-checked the Lan et al. F1000Research link/DOI
+(\url{https://doi.org/10.12688/f1000research.162267.1}) and confirmed it currently resolves
+correctly. (iii) Addressed for the retained predictive checks: Table 1 (sex) and Table 2 (age)
+now state the chance-level baseline explicitly in the results text (line 344) -- AUC~=~0.5 for
+sex, and $R^2=0$ for age (predicting the training-set mean). The deep-learning
+outcome-prediction plots this comment originally targeted have been removed from Technical
+Validation (see E12, R2-m3), so a baseline is no longer needed there.}
 
 \end{commentlist}
 
