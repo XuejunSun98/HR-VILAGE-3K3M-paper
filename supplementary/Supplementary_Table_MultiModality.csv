@@ -11,3 +11,8 @@ GSE194378,Not yet identified,scRNA-seq + CITE-seq (surface proteins) + scTCR/BCR
 SDY311,"SDY311 (ImmPort, same study)","Flow cytometry, MBAA (multiplex bead array assay), CyTOF",Available in ImmPort for this study; not included in HR-VILAGE (transcriptomic/antibody scope only).
 SDY112,"SDY112 (ImmPort, same study)","Flow cytometry, MBAA, CyTOF",Available in ImmPort for this study; not included in HR-VILAGE.
 SDY315,"SDY315 (ImmPort, same study)","Flow cytometry, MBAA, CyTOF",Available in ImmPort for this study; not included in HR-VILAGE.
+GSE74811,SDY270 (ImmPort),Q-PCR (targeted gene panel),"Antibody data for this study is sourced from ImmPort SDY270, which also has targeted Q-PCR data not included in HR-VILAGE."
+GSE74813,SDY56 (ImmPort),Flow cytometry,"Antibody data sourced from ImmPort SDY56, which also has flow cytometry data not included in HR-VILAGE."
+GSE74815,SDY56 (ImmPort),Flow cytometry,"Antibody data sourced from ImmPort SDY56 (same as GSE74813), which also has flow cytometry data not included in HR-VILAGE."
+GSE59654,SDY404 (ImmPort),"Flow cytometry, mass spectrometry","Antibody data sourced from ImmPort SDY404, which also has flow cytometry and mass spectrometry data not included in HR-VILAGE."
+GSE48762,SDY180 (ImmPort),Flow cytometry,"Antibody data sourced from ImmPort SDY180, which also has flow cytometry data not included in HR-VILAGE."
