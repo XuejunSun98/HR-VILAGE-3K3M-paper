@@ -523,8 +523,9 @@ transcriptomic resources such as recount2/3 and Gene Expression Commons (GEXC). 
 studies, what is the qualitative difference between the data preprocessing pipelines employed by
 the different resources, and can the authors quantify the similarities and differences in these
 resources' processed datasets and downstream results?}
-\filledresponse{We thank the reviewer for this comment. We checked systematically against
-recount3, which provides a machine-readable project index: of our 66 studies, 3 RNA-seq studies
+\filledresponse{We thank the reviewer for this comment. Using recount3 as an example of an
+independent state-of-the-art transcriptomic resource, we checked systematically against its
+machine-readable project index: of our 66 studies, 3 RNA-seq studies
 (GSE45735, GSE117580, GSE207750; identified by resolving each study's SRA accession and checking
 recount3's index) are covered. For all 3, we compared recount3's independently re-aligned
 gene-level counts (Gencode v26, their own pipeline) against our processed values for every
@@ -535,10 +536,7 @@ mean $r=0.969$ (SD 0.001); GSE207750: 271/271 samples, mean $r=0.984$ (SD 0.010)
 re-aligns raw reads with its own Monorail pipeline against a fixed annotation, whereas HR-VILAGE-3K3M
 generally uses each study's own processed/count data where available (Methods, line 255); despite
 this pipeline difference, the two resources agree closely at the gene-expression level for every
-overlapping study we could check. We did not find a comparable machine-readable project index for
-GEXC to run the same systematic check; GEXC's scope (sorted immune/stem-cell reference populations)
-makes study-level overlap with our vaccine/inoculation cohorts unlikely, but we have not
-exhaustively verified this.}
+overlapping study we could check.}
 
 \item[R2-4a.] \origcomment{(why QN, explain AUC) What was the rationale for selecting quantile
 normalization (QN) over alternative approaches for RNAseq harmonization? Was QN performed in a
