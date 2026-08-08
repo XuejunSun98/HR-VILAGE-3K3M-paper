@@ -581,7 +581,15 @@ account for study-specific artifacts. Given this context, it is highly advisable
 not only provide the standardized analysis-ready data for a study, but also the analysis-ready
 data provided by the study's authors whenever available (e.g., from websites/GitHub linked to
 papers such as illustrated here: \url{https://www.tsanglab.org/resources}).}
-\responsespace
+\filledresponse{We thank the reviewer for this comment. We agree study-specific processing is a
+valid alternative strategy in principle, but we believe a single uniform pipeline is the right
+choice for HR-VILAGE-3K3M: it is what makes the 66 studies directly comparable to each other, which
+is the resource's core purpose. We do not additionally host each study's author-processed version
+ourselves -- per the editor's explicit instruction (E9) not to mirror third-party input files on
+Hugging Face -- but every study's original source repository, where its author-processed data can
+be obtained directly, is linked in Supplementary Table 1 (\texttt{transcriptomic\_data\_link}
+column), so users wanting the two-pipeline comparison the reviewer describes can already assemble
+it from there.}
 
 \item[R2-5b.] \origcomment{Conversely, focusing on RNAseq data, gene counts data provided by study
 authors is used for certain studies in HR-VILAGE, and gene counts from standardized analysis
@@ -592,7 +600,16 @@ studies, HR-VILAGE should also provide gene counts recomputed from its standard 
 outcome would be two versions of the resource (study-specific processing and uniform processing),
 useful for QC comparison (e.g., tSNE/PCA) to flag samples with discrepancies between the two
 pipelines.}
-\responsespace
+\filledresponse{We thank the reviewer for this comment. Recomputing counts uniformly from raw reads
+for every RNA-seq study (re-aligning even where author-provided counts already exist) is a
+substantial re-processing effort we consider out of scope for the present Data Descriptor (see E1);
+it is also not possible for every study, since not all have a public raw-read (FASTQ/SRA) deposit
+in the first place. As with R2-5a, we address this by linking each study's original source in
+Supplementary Table 1 rather than hosting a second processed version ourselves, consistent with
+E9. We agree the two-pipeline QC comparison the reviewer describes (tSNE/PCA discrepancy flagging)
+is valuable and note it as a natural follow-up analysis for users or a future data release, building
+on our R2-3 finding that our processed values already agree closely with an independent
+re-alignment (recount3) for the studies where that comparison is possible.}
 
 \item[R2-6.] \origcomment{(compare application results with publications) For any of the three
 applications shown, please compare your results with previously published results to indicate
