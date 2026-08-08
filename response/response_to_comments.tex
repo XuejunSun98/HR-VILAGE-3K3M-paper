@@ -455,7 +455,27 @@ curation/analysis has been additionally done in HR-VILAGE-3K3M to address these 
 issues? For instance, it is hard to believe that ImmPort did not already handle gene ID issues
 like SEPTIN14. (iii) For the studies in HR-VILAGE taken from GEO and ArrayExpress, was more effort
 required to perform data cleaning and harmonization (compared to studies taken from ImmPort)?}
-\responsespace
+\filledresponse{We thank the reviewer for this comment. (i) Only 3/66 studies (4.5\%; SDY311,
+SDY112, SDY315, all one underlying cohort) have ImmPort as their expression-data source -- far
+fewer than ``probably many.'' A further 10 studies use ImmPort only for antibody/response data, with
+expression from GEO (13/66, 20\%, touch ImmPort in any capacity). (ii)--(iii) We checked this
+directly against the ImmPort-deposited file for SDY311
+(\texttt{SDY311\_EXP13635\_microarray.703343.tsv}): it is confirmed not quantile-normalized
+(per-sample signal distributions differ substantially, e.g.\ means ranging 213--293 across
+samples; identical sorted distributions would be expected if pre-normalized), and it uses outdated
+gene symbols rather than current HGNC nomenclature -- e.g.\ \texttt{SEPT14}, \texttt{SEPT12},
+\texttt{SEPT9}, \texttt{SEPP1}, the exact pre-2017 septin/selenoprotein naming HGNC replaced
+because of Excel auto-date corruption, i.e.\ precisely the SEPTIN14-type issue the reviewer asks
+about, present and unresolved in ImmPort's own file. Multiple probes per gene are also common (up
+to 17 for one gene), so probe-to-gene collapsing was likewise necessary. We applied the same
+pipeline used for GEO Illumina studies (Methods, line 255) -- probe collapsing to the
+highest-median probe, \texttt{HGNChelper} symbol standardization, $\log_2$, and QN -- and merged in
+subject-level HAI titers (provided separately in ImmPort's own schema) under our standardized
+MFC-based responder definition. In short, ImmPort-sourced microarray data required the same
+harmonization effort as GEO-sourced microarray data; the harmonization burden comes from raw,
+non-normalized microarray output generally, not from any one repository. This positioning (ImmPort's
+role in HR-VILAGE, and the fraction of the resource it accounts for) has now been added to
+be added to Background and Summary.}
 
 \item[R2-2a.] \origcomment{(other modalities) A key limitation of HR-VILAGE-3K3M compared to
 ImmPort is its restriction to transcriptomic/antibody-response data, versus ImmPort's additional
