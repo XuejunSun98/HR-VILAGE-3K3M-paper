@@ -568,7 +568,11 @@ antibody-responder-prediction benchmark (and its AUC = 0.737) was removed from T
 entirely, per our response to E12. The retained Batch-Effect Correction Assessment does not involve
 a predictive model or report an AUC; QN, ComBat, and Regression are used purely as illustrative
 example batch-correction methods, compared via t-SNE and variance-explained (Table 3), not as
-inputs to a downstream classifier.}
+inputs to a downstream classifier. For context, in that removed analysis the Transformer's AUC did
+not differ dramatically across the three correction methods (QN $\approx$0.74, ComBat
+$\approx$0.70, Regression $\approx$0.61) -- QN and ComBat were close despite ComBat removing far
+more study-driven variance (Table 3), which argues against QN-induced rescaling being the main
+driver of the reported AUC.}
 
 \item[R2-5a.] \origcomment{(study specific pipeline) While standardized/uniform (pre)processing
 pipelines employed by HR-VILAGE is preferable to reduce methodological variations, another viable
