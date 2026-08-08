@@ -480,7 +480,16 @@ restriction limit the utility of HR-VILAGE for future systems immunology analyse
 re-analyses? This limitation either needs to be acknowledged, alongside the advantages of
 HR-VILAGE over ImmPort; or addressed by including analysis-ready data pertaining to some of these
 extra modalities in HR-VILAGE.}
-\responsespace
+\filledresponse{We thank the reviewer for this comment. Gene expression (plus antibody response)
+is HR-VILAGE-3K3M's core, deliberate scope, harmonized uniformly across all 66 studies -- this is
+what we can offer consistently. Most constituent studies simply have no other modality available
+at all, so broadening scope is not a matter of choice for them. A minority do: from our curation
+records, 5/66 studies (GSE102012, GSE48023/GSE48018, GSE250023, GSE207750, GSE194378) have
+companion multi-omic data at the source (scATAC-seq, scRNA-seq, CITE-seq, autoantibody panels, DNA
+genotyping) that is not included in HR-VILAGE, now listed with accessions in new Supplementary
+Table S2. Including these is out of scope for the present Data Descriptor (see E1); we cite the
+companion accessions so interested users can pursue them directly. We acknowledge this scope
+limitation explicitly in Usage Notes.}
 
 \item[R2-2b.] \origcomment{A related point on missing modalities is different assays of
 immune/antibody response such as MN (microneutralization) titers, HAI, and ELISPOT. There is
@@ -489,7 +498,17 @@ ELISPOT are stored in HR-VILAGE. Are there studies that have jointly assayed the
 immune endpoints? If so, it would be useful to store these different endpoints in HR-VILAGE to
 enable alternative definitions of antibody-responders (continuous-valued as well as binary) to
 compare/contrast these outcome definitions from biological and statistical viewpoints.}
-\responsespace
+\filledresponse{We thank the reviewer for this comment. We checked the actual stored columns
+across the 36 studies with antibody data. Influenza studies (22/36) uniformly use HAI titers, as
+already stated. COVID-19 studies (14/36) are more heterogeneous: most store binding IgG (e.g.\
+spike/RBD/nucleocapsid, across variants), and several jointly store additional endpoint types --
+e.g.\ GSE246525 has binding IgG, a surrogate virus neutralization titer (sVNT, an MN-equivalent),
+and an IGRA (interferon-gamma release, T-cell) readout together; GSE201533 has binding IgG plus an
+ACE2-competition (neutralization-inhibition) assay. We did not find literal ELISPOT data in the
+studies checked. So joint multi-endpoint data does exist for several studies and is already
+included as-is (raw values, one column per endpoint) in the \texttt{antibody} folder; we have not
+imposed a single derived outcome across endpoint types, precisely so users can define
+continuous-valued or alternative binary outcomes themselves, consistent with our response to R1-6.}
 
 \item[R2-3.] \origcomment{(compare with other repo) Comparative analysis of this resource with
 other independent state-of-the-art resources is missing. While all studies in HR-VILAGE may not

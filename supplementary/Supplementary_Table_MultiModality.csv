@@ -1,0 +1,10 @@
+hrvilage_study_ID,companion_accession,companion_modality,notes
+GSE102012,"GSE165906, GSE165907","scATAC-seq, scRNA-seq","Same TIV/H5N1+AS03 vaccine study family (matched pathogen/arm), not included in HR-VILAGE."
+GSE102012,GSE166063,RNA-seq (bulk),Same study family.
+GSE102012,GSE166180,Bulk ATAC-seq,Same study family.
+"GSE48023, GSE48018",Not yet identified,DNA genotyping,"Curation notes indicate the same female/male TIV cohorts were also DNA genotyped; exact accession not identified (GSE48024, the parent SuperSeries of GSE48023/GSE48018, is itself gene expression, not genotyping)."
+GSE250023,"GSE260475, GSE260478",Autoantibody panel,Same SLE/SARS-CoV-2 vaccine study family.
+GSE250023,GSE250024,CITE-seq (surface proteins + transcriptome),Same study family.
+GSE250023,GSE224198,"scRNA-seq, scATAC-seq, scBCR-seq, scTCR-seq",Same study family.
+GSE207750,Synapse:syn52749029,Multi-omic baseline subtyping data (not GEO-hosted),"Companion dataset from a related publication on the same cohort (patient subtyping analysis of baseline multi-omic data, Clin Immunol 2024)."
+GSE194378,Not yet identified,scRNA-seq + CITE-seq (surface proteins) + scTCR/BCR (V(D)J),Same parent publication ran longitudinal multimodal single-cell profiling alongside the bulk RNA-seq deposited as GSE194378 (used as HR-VILAGE's worked example dataset); only the bulk RNA-seq arm is included.
