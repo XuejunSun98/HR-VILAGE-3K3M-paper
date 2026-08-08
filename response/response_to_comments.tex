@@ -545,13 +545,30 @@ across the pooled dataset? Prior work has shown that whole-dataset QN can distor
 differences, particularly when class-effect proportions are high, whereas class-specific QN
 better preserves such differences (Zhao, Wong \& Goh, Sci Rep, 2020:
 \url{https://www.nature.com/articles/s41598-020-72664-6}).}
-\responsespace
+\filledresponse{We thank the reviewer for this comment. QN's role here is specifically as the
+microarray/RNA-seq cross-platform co-normalization step, following our own benchmarking of QN for
+this purpose (Sun et al., bioRxiv 2026, doi:10.1101/2024.09.30.615938, already cited in Methods and
+Background and Summary). In the Batch-Effect Correction Assessment, QN, ComBat, and Regression are
+presented as representative, illustrative examples of standard batch-correction strategies (other
+established methods, e.g.\ limma, exist and were not exhaustively benchmarked here), not as a claim
+that this trio is uniquely optimal. QN was performed pooled across all samples, not stratified by
+responder class, deliberately: class-specific QN would use the very outcome label under study as
+an input to normalization, artificially introducing between-class differences into the normalized
+values themselves rather than merely preserving genuine ones -- this is a stronger concern than the
+loss of biological signal the cited work (Zhao, Wong \& Goh 2020) raises about pooled QN, so we
+consider pooled QN the more defensible default for a general-purpose harmonized resource not built
+around one specific outcome.}
 
 \item[R2-4b.] \origcomment{On a related point, could the authors clarify whether the Transformer
 model used for antibody responder prediction was trained directly on QN-normalized gene
 expression values? If so, how much of the Transformer's predictive performance (AUC = 0.737) can
 be attributed to genuine biological signal vs. artifacts of the QN-induced rank-based rescaling?}
-\responsespace
+\filledresponse{We thank the reviewer for this comment. This is now moot: the Transformer-based
+antibody-responder-prediction benchmark (and its AUC = 0.737) was removed from Technical Validation
+entirely, per our response to E12. The retained Batch-Effect Correction Assessment does not involve
+a predictive model or report an AUC; QN, ComBat, and Regression are used purely as illustrative
+example batch-correction methods, compared via t-SNE and variance-explained (Table 3), not as
+inputs to a downstream classifier.}
 
 \item[R2-5a.] \origcomment{(study specific pipeline) While standardized/uniform (pre)processing
 pipelines employed by HR-VILAGE is preferable to reduce methodological variations, another viable
